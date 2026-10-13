@@ -25,7 +25,7 @@ def chrome(mode):
     hd = re.sub(r'(href="/companies/" style="[^"]*); font-weight: 600"', r'\1"', hd)
     hd = re.sub(r'(href="/buyers/" style="[^"]*)">For buyers', r'\1; font-weight: 600" aria-current="page">For buyers', hd)
     sfx = '' if mode == 'day' else '-n'
-    hd = hd.replace('href="/companies/#apply"', 'href="#talk%s"' % sfx).replace('>Apply</a>', '>Talk to SBC</a>')
+    hd = hd.replace('href="/companies/apply/"', 'href="#talk%s"' % sfx).replace('>Apply</a>', '>Talk to SBC</a>')
     open_div = SRC[start:hs]  # mode wrapper + modefade div
     return open_div, hd, ft
 
@@ -254,7 +254,7 @@ def hero(mode, sfx):
     cards = [('bh-c3', 'Water treatment contractor', 'Germany'),
              ('bh-c2', 'Cybersecurity training', 'United Kingdom'),
              ('bh-c1', 'Rail signalling engineer', 'India')]
-    chips = ''.join('<span style="--i:%d"><i></i>%s</span>' % (i, c) for i, c in enumerate(('Ownership', 'Sanctions', 'Licences', 'ICV')))
+    chips = ''.join('<span style="--i:%d"><i></i>%s</span>' % (i, c) for i, c in enumerate(('Ownership', 'Sanctions', 'Licences', 'Agent', 'ICV')))
     cs = ''.join('<div class="bh-c %s"><div class="bh-fl"><div class="bh-card"><div class="bh-top"><span class="bh-id">%s<span><b>%s</b><span>%s</span></span></span><span class="mono bh-q">SBC-Qualified</span></div><div class="bh-chips">%s</div></div></div></div>'
                  % (c, QM, t, w, chips) for c, t, w in cards)
     ghosts = ''.join('<img class="bh-ghost" src="%s" alt="" style="left:%s;top:%s;width:%s">' % (cube(mode, 'ghost'), l, t, w)
@@ -294,14 +294,14 @@ def pack(mode, sfx):
     # bottom of the stack first; the officer's approval caps it
     L = [('Ownership to the final owner', 'Checked [date]', '#F8F9FD', '#D3DBF1', '#262B38', '#3A3F4A'),
          ('Sanctions screening', 'Run [date]', '#F3F5FB', '#D3DBF1', '#2A3040', '#3E4558'),
-         ('Certificates', 'Valid', '#EEF2FC', '#C9D2EA', '#2C3448', '#434C66'),
+         ('Licences and certificates', 'Valid', '#EEF2FC', '#C9D2EA', '#2C3448', '#434C66'),
          ('Local agent', 'Appointed', '#E7ECF9', '#C3CFEE', '#2F3A5C', '#3E4C78'),
-         ('ICV certificate', 'Issued [date]', '#DCE4F8', '#B8C6EC', '#33416B', '#465A92'),
+         ('ICV (In-Country Value) certificate', 'Issued [date]', '#DCE4F8', '#B8C6EC', '#33416B', '#465A92'),
          ('Officer approval', 'Signed [date]', '#1F4FD1', '#1F4FD1', '#1F4FD1', '#5B82FF')]
     layers = ''.join('<div class="bp-l%s" style="--j:%d;--d-bg:%s;--d-bd:%s;--n-bg:%s;--n-bd:%s"><div class="bp-pw"><div class="bp-plate"></div></div><span class="bp-tie"></span><span class="bp-lab"><b>%s</b><span class="mono">%s</span></span></div>'
                      % (' bp-top' if j == 5 else '', j, a, b, c, d, t, s) for j, (t, s, a, b, c, d) in enumerate(L))
     return ('<section class="sec cv-sec" id="pack%s" aria-label="What arrives">' % sfx + bg('64%', '54%') +
-            '<div class="cv-split"><div class="cv-copy by-head"><span class="cv-k">What arrives</span><h2>Five checks, one pack.</h2><p class="cv-sub">Each dated. Signed by an officer.</p></div>'
+            '<div class="cv-split"><div class="cv-copy by-head"><span class="cv-k">What arrives</span><h2>Five checks, one signed pack.</h2><p class="cv-sub">Each dated. Signed by an officer.</p></div>'
             '<div class="bp-stage" role="img" aria-label="The introduction pack as a stack: ownership to the final owner, sanctions screening, certificates, local agent and ICV certificate, capped by the officer&#39;s signed approval">'
             '<img class="bp-shadow" src="/assets/img/sbc/shadow.svg" alt="">' + layers + '</div></div></section>')
 
@@ -324,7 +324,7 @@ def talk(mode, sfx):
             '<div class="bk-card"><form novalidate>'
             '<label for="nd%s">What do you need?</label><textarea class="bk-fi" id="nd%s" name="need" placeholder="A contractor to upgrade a water treatment plant"></textarea>' % (sfx, sfx) +
             '<label for="wh%s">Where</label><select class="bk-fi" id="wh%s" name="where"><option>United Arab Emirates</option><option>Saudi Arabia</option><option>Qatar</option><option>Kuwait</option><option>Bahrain</option><option>Oman</option></select>' % (sfx, sfx) +
-            '<span class="bk-err" aria-live="polite"></span><button type="submit" class="bk-go">Talk to SBC</button><span class="bk-proto">Prototype: this form does not send anything yet.</span></form>'
+            '<span class="bk-err" aria-live="polite"></span><button type="submit" class="bk-go">Post my need</button><span class="bk-proto">Prototype: this form does not send anything yet.</span></form>'
             '<div class="bk-done" hidden tabindex="-1">' + QM + '<b>Thank you. SBC will be in touch.</b><span>Prototype: nothing was sent.</span><button type="button">Post another need</button></div>'
             '</div></div></section>')
 
