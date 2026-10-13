@@ -82,7 +82,7 @@
           // the block crosses the platforms as the section scrolls through the middle of the screen
           var hp = clamp((p - 0.22) / 0.42);
           s.style.setProperty('--hp', hp.toFixed(4));
-          var rows = s.querySelectorAll('.how-side .row');
+          var rows = s.querySelectorAll('.how-side .row, .how-side .rowd'); // .rowd: the night copy's rows
           var marks = [0, 0.36, 0.7];
           for (var q = 0; q < rows.length; q++) rows[q].classList.toggle('lit', hp >= marks[q]);
         } else if (label === 'The mark') {
