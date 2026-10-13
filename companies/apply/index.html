@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en" data-mode="day">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SBC Capital · Apply</title>
+<meta name="description" content="Register your company for the SBC review. About five minutes.">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+body{margin:0}
+a{color:#1F4FD1}a:hover{color:#1A1D24}
+.navl{position:relative}
+.navl::after{content:"";position:absolute;left:0;right:100%;bottom:4px;height:2px;background:#1F4FD1;transition:right .25s ease}
+.navl:hover::after{right:0}
+.btn{transition:background-color .2s ease, transform .2s ease}
+.btn:hover{background-color:#1F4FD1 !important;color:#fff !important;transform:translateY(-1px)}
+.ghost{transition:background-color .2s ease, color .2s ease}
+.ghost:hover{background-color:#1A1D24 !important;color:#fff !important}
+.lift{transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease}
+.lift:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(26,29,36,.10);border-color:#1F4FD1 !important}
+.arrow{display:inline-block;transition:transform .2s ease}
+.lift:hover .arrow,.ul:hover .arrow{transform:translateX(5px)}
+.cell polygon{transition:fill .3s ease}
+.cell:hover .t{fill:#1F4FD1}
+.cell:hover .s{fill:#1A1D24}
+.pulse{animation:pulse 2.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
+.rise{animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
+.rise2{animation:rise .7s .12s cubic-bezier(.2,.7,.2,1) both}
+.rise3{animation:rise .7s .24s cubic-bezier(.2,.7,.2,1) both}
+@keyframes rise{from{transform:translateY(14px)}to{transform:none}}
+.frame rect{transition:stroke-dasharray .4s ease, fill .4s ease, stroke .4s ease}
+.row{transition:background-color .2s ease}
+.row:hover{background-color:#EEEBE5 !important}
+.tab{transition:color .2s ease, border-color .2s ease}
+.fade{animation:fade .45s ease both}
+@keyframes fade{from{transform:translateY(6px)}to{transform:none}}
+.draw{stroke-dasharray:400;animation:draw 1.4s ease both}
+@keyframes draw{from{stroke-dashoffset:400}to{stroke-dashoffset:0}}
+.tick{display:block;flex:none;width:16px;height:16px;box-sizing:border-box;border:1.5px dashed #1A1D24;animation:tick .5s ease both}
+@keyframes tick{to{background-color:#1F4FD1;border:1.5px solid #1F4FD1}}
+button:focus-visible,a:focus-visible{outline:2px solid #1F4FD1;outline-offset:3px}
+@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
+
+.wave{animation:wave 7s ease-in-out infinite}
+@keyframes wave{0%,12%,100%{fill:#F6F4F0}5%{fill:#1F4FD1}}
+.panel{transition:flex-grow .5s cubic-bezier(.2,.7,.2,1), background-color .4s ease}
+.panel:hover{flex-grow:1.7}
+.panel:hover .go{transform:translateX(8px)}
+.go{display:inline-block;transition:transform .3s ease}
+.loop{display:block;width:16px;height:16px;box-sizing:border-box;border:1.5px dashed #1A1D24;animation:loop 8s ease infinite}
+@keyframes loop{0%,8%{background-color:transparent;border:1.5px dashed #1A1D24}14%,80%{background-color:#1F4FD1;border:1.5px solid #1F4FD1}90%,100%{background-color:transparent;border:1.5px dashed #1A1D24}}
+.stamp{animation:stamp 8s ease infinite;transform-origin:center}
+@keyframes stamp{0%,52%{transform:scale(.6);opacity:.15}58%,82%{transform:scale(1);opacity:1}92%,100%{transform:scale(.6);opacity:.15}}
+.mover{animation:mover 7s cubic-bezier(.5,0,.5,1) infinite}
+@keyframes mover{0%{transform:translateX(0)}85%,100%{transform:translateX(1000px)}}
+.gate{animation:gate 7s ease infinite}
+@keyframes gate{0%{fill:#FFFFFF;stroke:#1A1D24}6%,90%{fill:#1A1D24;stroke:#1A1D24}100%{fill:#FFFFFF;stroke:#1A1D24}}
+.gatelast{animation:gatelast 7s ease infinite}
+@keyframes gatelast{0%{fill:#FFFFFF;stroke:#1A1D24}6%,90%{fill:#1F4FD1;stroke:#1F4FD1}100%{fill:#FFFFFF;stroke:#1A1D24}}
+.fan{transition:transform .45s cubic-bezier(.2,.7,.2,1), box-shadow .45s ease, z-index 0s}
+.fan:hover{transform:translateY(-26px) rotate(0deg) !important;box-shadow:0 24px 50px rgba(26,29,36,.16);z-index:5}
+.flipwrap{perspective:1400px}
+.flipin{position:relative;width:100%;height:100%;transition:transform .8s cubic-bezier(.2,.7,.2,1);transform-style:preserve-3d}
+.flipwrap:hover .flipin{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.back{transform:rotateY(180deg)}
+.drawsq{stroke-dasharray:368;animation:drawsq 1.6s ease both}
+@keyframes drawsq{from{stroke-dashoffset:368}to{stroke-dashoffset:0}}
+.litin{animation:litin .6s 1.5s ease both;transform-origin:77px 23px}
+@keyframes litin{from{transform:scale(.2)}to{transform:scale(1)}}
+
+.pop{animation:pop .7s cubic-bezier(.2,.8,.2,1.2) both}
+@keyframes pop{from{transform:translateY(-18px)}to{transform:none}}
+.rise-cube{transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.rise-cube:hover{transform:translateY(-10px)}
+.vf{animation:vf 6s ease-in-out infinite}
+@keyframes vf{0%,100%{inset:0}50%{inset:28px}}
+.glow{animation:glow 3s ease-in-out infinite}
+@keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(31,79,209,.0)}50%{box-shadow:0 0 0 14px rgba(31,79,209,.18)}}
+.port{transition:inset .5s cubic-bezier(.2,.7,.2,1), border-color .4s ease}
+.portcard:hover .port{inset:46px !important;border-color:#1F4FD1 !important}
+.portcard:hover .core{background-color:#1F4FD1 !important}
+.core{transition:background-color .4s ease}
+.layer{transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.explode:hover .l1{transform:translate(0,0) !important}
+.explode:hover .l2{transform:translate(0,0) !important}
+.explode:hover .l3{transform:translate(0,0) !important}
+.token{animation:token 7.5s cubic-bezier(.6,0,.4,1) infinite}
+@keyframes token{0%,8%{transform:translate(0,0)}30%,40%{transform:translate(300px,0)}62%,72%{transform:translate(600px,0)}92%,100%{transform:translate(600px,0)}}
+.pad{animation:pad 7.5s ease infinite}
+@keyframes pad{0%{fill:#F6F4F0}6%,94%{fill:#1A1D24}100%{fill:#F6F4F0}}
+.padlast{animation:padlast 7.5s ease infinite}
+@keyframes padlast{0%{fill:#F6F4F0}6%,94%{fill:#1F4FD1}100%{fill:#F6F4F0}}
+
+.levall{animation:levall 7s ease-in-out infinite}
+@keyframes levall{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+.levsh{--o:1;transform-box:fill-box;transform-origin:center;animation:levsh 7s ease-in-out infinite}
+@keyframes levsh{0%,100%{transform:scale(1)}50%{transform:scale(.86)}}
+.lev0{animation:lev0 5s ease-in-out infinite}@keyframes lev0{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+.lev1{animation:lev1 5.6s ease-in-out infinite}@keyframes lev1{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+.lev2{animation:lev2 4.6s ease-in-out infinite}@keyframes lev2{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.lev3{animation:lev3 6.2s ease-in-out infinite}@keyframes lev3{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.lev.litcell{animation:levlit 5s ease-in-out infinite}
+@keyframes levlit{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+.rise-cube{transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.rise-cube:hover{transform:translateY(-12px)}
+
+
+.halo{animation:halo 3.4s ease-in-out infinite}
+@keyframes halo{0%,100%{opacity:.55}50%{opacity:1}}
+.ghostd{transition:background-color .2s ease, color .2s ease}
+.ghostd:hover{background-color:#FFFFFF !important;color:#1A1D24 !important}
+
+.c3wrap{perspective:1700px;animation:cfloat 6s ease-in-out infinite}
+@keyframes cfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.card3d{position:relative;width:420px;height:500px;transform-style:preserve-3d;transform:rotateX(9deg) rotateY(-22deg);transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+.c3wrap:hover .card3d{transform:rotateX(6deg) rotateY(-8deg)}
+.card3d.flipped,.c3wrap:hover .card3d.flipped{transform:rotateX(9deg) rotateY(158deg)}
+.c3f{position:absolute;overflow:hidden;inset:0;box-sizing:border-box;padding:38px;display:flex;flex-direction:column;justify-content:space-between;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.c3front{transform:translateZ(11.0px)}
+.c3back{transform:rotateY(180deg) translateZ(11.0px)}
+.c3e{position:absolute;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.c3r{top:0;left:199.0px;width:22px;height:500px;transform:rotateY(90deg) translateZ(210.0px)}
+.c3l{top:0;left:199.0px;width:22px;height:500px;transform:rotateY(-90deg) translateZ(210.0px)}
+.c3t{left:0;top:239.0px;width:420px;height:22px;transform:rotateX(90deg) translateZ(250.0px)}
+.c3b{left:0;top:239.0px;width:420px;height:22px;transform:rotateX(-90deg) translateZ(250.0px)}
+.c3shadow{position:absolute;left:8%;right:8%;height:46px;border-radius:50%;filter:blur(22px);animation:cshadow 6s ease-in-out infinite}
+@keyframes cshadow{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(.88);opacity:.7}}
+.c3cast{filter:blur(34px);transform-origin:left center}
+.turn{transition:background-color .2s ease, color .2s ease}
+
+.modefade{animation:modefade .45s ease both}
+@keyframes modefade{from{opacity:0}to{opacity:1}}
+
+.c3f>div,.c3f>span,.c3f>svg[role]{position:relative;z-index:1}
+
+
+.far{animation:far 38s ease-in-out infinite alternate;filter:blur(.7px)}
+@keyframes far{from{transform:translate(0,0) scale(.82)}to{transform:translate(-26px,8px) scale(.82)}}
+.near{animation:near 30s ease-in-out infinite alternate}
+@keyframes near{from{transform:translate(0,0)}to{transform:translate(14px,-6px)}}
+.rowd{transition:background-color .2s ease}
+.rowd:hover{background-color:rgba(255,255,255,.04) !important}
+.navl{position:relative}
+
+.tok{animation:tok 7.5s cubic-bezier(.6,0,.4,1) infinite}@keyframes tok{0%,8%{transform:translate(0,0)}30%,40%{transform:translate(108.4px,62.6px)}62%,90%{transform:translate(216.9px,125.2px)}100%{transform:translate(216.9px,125.2px);opacity:0}}.ov1{animation:ov1 7.5s ease infinite}@keyframes ov1{0%,4%{opacity:0}9%,92%{opacity:.9}100%{opacity:0}}.ov2{animation:ov2 7.5s ease infinite}@keyframes ov2{0%,30%{opacity:0}36%,92%{opacity:.9}100%{opacity:0}}.ov3{animation:ov3 7.5s ease infinite}@keyframes ov3{0%,62%{opacity:0}68%,92%{opacity:1}100%{opacity:0}}
+
+.kb1{animation:kb1 16s ease-in-out infinite alternate;transform-origin:62% 45%}
+@keyframes kb1{from{transform:scale(1.04) translate(1.5%,1%)}to{transform:scale(1.18) translate(-3%,-2%)}}
+.kb2{animation:kb2 18s ease-in-out infinite alternate;transform-origin:38% 55%}
+@keyframes kb2{from{transform:scale(1.16) translate(-3%,1%)}to{transform:scale(1.04) translate(2.5%,-1.5%)}}
+.kb3{animation:kb3 20s ease-in-out infinite alternate;transform-origin:50% 40%}
+@keyframes kb3{from{transform:scale(1.05) translate(2%,1.5%)}to{transform:scale(1.17) translate(-2.5%,-2.5%)}}
+
+
+html[data-mode="day"] .mode-night, html[data-mode="night"] .mode-day{display:none}
+html,body{margin:0}
+html[data-mode="day"] body{background:#FFFFFF}
+html[data-mode="night"] body{background:#1A1D24}
+
+.site{width:100%;max-width:1440px;margin:0 auto}
+@media (max-width:1240px){
+  .hero-wall{width:50% !important}
+  .hero-text h1{font-size:48px !important}
+}
+@media (max-width:900px){
+  .hd{height:auto !important;flex-wrap:wrap;padding:12px 20px !important;gap:10px 12px !important}
+  .hd-nav{order:3;width:100%;overflow-x:auto;gap:16px !important;padding-bottom:2px}
+  .hd-nav a{white-space:nowrap;font-size:13px !important}
+  .hd-act{gap:10px !important}
+  .sec{height:auto !important}
+  .hero-body{flex-direction:column;align-items:stretch !important;padding:40px 20px 48px !important;gap:24px !important}
+  .hero-text h1{font-size:38px !important}
+  .hero-text p{max-width:none !important;font-size:17px !important}
+  .hero-wall{width:100% !important}
+  .how-grid{grid-template-columns:1fr !important}
+  .how-grid>div:first-child{height:440px}
+  .how-h2{left:20px !important;right:20px !important;bottom:20px !important;padding:20px 22px !important}
+  .how-h2 h2{font-size:28px !important}
+  .how-side{padding:32px 20px 48px !important}
+  .mark-grid{grid-template-columns:1fr !important}
+  .mark-grid>div:first-child{height:380px}
+  .mark-badge{left:20px !important;bottom:20px !important;padding:16px 18px !important}
+  .mark-badge svg{width:56px;height:56px}
+  .mark-badge span{font-size:22px !important}
+  .mark-panel{padding:40px 0 24px !important;overflow:hidden}
+  .mark-panel>div{transform:scale(.76);transform-origin:top center;margin-bottom:-150px}
+  .hold{padding:56px 20px !important}
+  .hold h1{font-size:36px !important}
+  .ft{height:auto !important;flex-direction:column;align-items:flex-start !important;padding:24px 20px !important;gap:12px !important}
+  .ft span{flex-wrap:wrap;gap:12px 20px !important}
+}
+@media (max-width:480px){
+  .hd-act a[lang]{display:none}
+  .hd-act a.btn{padding:10px 14px !important}
+}
+@media (max-width:380px){
+  .hero-text h1{font-size:34px !important}
+}
+
+/* scroll motion (assets/motion.js sets the variables; nothing here applies without it) */
+.js-scroll .hero-wall .rise-cube{transform:translate3d(0,calc(var(--sp,0) * var(--d,0) * -1px),0)}
+.js-scroll .hero-text{translate:0 calc(var(--sp,0) * 70px);opacity:calc(1 - var(--sp,0) * 1.1)}
+.js-scroll .sec .far{translate:0 calc(var(--p,0) * -90px)}
+.js-scroll .sec .near{translate:0 calc(var(--p,0) * -30px)}
+.js-scroll .sec .tok,.js-scroll .sec .ov1,.js-scroll .sec .ov2,.js-scroll .sec .ov3{animation-play-state:paused !important;animation-delay:calc(var(--hp,0) * -6.6s) !important}
+.js-scroll .how-side .row{opacity:.38;transition:opacity .45s ease}
+.js-scroll .how-side .row.lit{opacity:1}
+.js-scroll .card3d:not(.flipped){transform:rotateX(calc(20deg - var(--mp,1) * 11deg)) rotateY(calc(-64deg + var(--mp,1) * 42deg)) !important;transition:transform .2s linear}
+.js-scroll .rv{opacity:0;translate:0 32px;transition:opacity .8s ease,translate .8s cubic-bezier(.2,.7,.2,1)}
+.js-scroll .mark-badge.rv{translate:-40px 0}
+.js-scroll .rv.in{opacity:1;translate:0 0}
+
+html[data-mode="day"]{--bg:#FFFFFF;--ink:#1A1D24;--sub:#5B6070;--line:#CFCBC3;--field:#FFFFFF;--fline:#A9AEB8;--acc:#1F4FD1;--soft:#F3F5FB;--err:#B42318;--btn:#1A1D24;--btnfg:#FFFFFF}
+html[data-mode="night"]{--bg:#1A1D24;--ink:#FFFFFF;--sub:#A9AFBA;--line:#3A3F4A;--field:#212530;--fline:#4A5060;--acc:#7E9CFF;--soft:#212530;--err:#FF8A80;--btn:#FFFFFF;--btnfg:#1A1D24}
+[hidden]{display:none !important}
+.site{font-family:'Readex Pro',system-ui,sans-serif;font-weight:300}
+.ap{background:var(--bg);color:var(--ink);font-family:'Readex Pro',system-ui,sans-serif;font-weight:300}
+.ap-wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:72px;padding:88px 72px 112px}
+.ap-side{display:flex;flex-direction:column;gap:22px;position:sticky;top:24px;align-self:start}
+.ap-k{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--sub)}
+.ap h1{margin:0;font-weight:600;font-size:48px;line-height:1.05;letter-spacing:-.025em;text-wrap:balance}
+.ap-lede{margin:0;font-size:18px;line-height:1.6;color:var(--sub);max-width:440px}
+.ap-proto{display:flex;gap:10px;align-items:flex-start;padding:14px 16px;border:1px dashed var(--acc);font-size:14px;line-height:1.5}
+.ap-proto b{font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--acc);white-space:nowrap;padding-top:2px}
+.ap-next{list-style:none;margin:0;padding:0;border-bottom:1px solid var(--line)}
+.ap-next li{display:grid;grid-template-columns:40px 1fr;gap:12px;padding:14px 0;border-top:1px solid var(--line);font-size:15px;line-height:1.5}
+.ap-next span:first-child{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;padding-top:2px}
+.ap-next li:last-child span:first-child{color:var(--acc)}
+.ap-form{display:flex;flex-direction:column;gap:40px;min-width:0}
+.ap fieldset{border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:20px;min-width:0}
+.ap legend{padding:0 0 4px;font-weight:600;font-size:22px;display:flex;gap:14px;align-items:baseline}
+.ap legend span{font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:12px;letter-spacing:.08em;color:var(--acc)}
+.ap-row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.f{display:flex;flex-direction:column;gap:8px;min-width:0}
+.f label,.f .lab{font-size:15px;font-weight:400}
+.f .opt{color:var(--sub);font-size:13px;margin-left:6px}
+.f .hint{font-size:13px;color:var(--sub);line-height:1.4}
+.ap input[type=text],.ap input[type=email],.ap input[type=url],.ap select,.ap textarea{font:300 16px/1.4 'Readex Pro',system-ui,sans-serif;color:var(--ink);background:var(--field);border:1px solid var(--fline);border-radius:0;padding:13px 14px;width:100%;box-sizing:border-box;min-width:0;transition:border-color .2s ease, box-shadow .2s ease}
+.ap select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--sub) 50%),linear-gradient(135deg,var(--sub) 50%,transparent 50%);background-position:calc(100% - 20px) 50%,calc(100% - 14px) 50%;background-size:6px 6px;background-repeat:no-repeat;padding-right:40px}
+.ap textarea{min-height:96px;resize:vertical}
+.ap input:focus,.ap select:focus,.ap textarea:focus{outline:none;border-color:var(--acc);box-shadow:0 0 0 3px color-mix(in srgb,var(--acc) 22%,transparent)}
+.ap [aria-invalid=true]{border-color:var(--err) !important}
+.err{font-size:13px;color:var(--err)}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{position:relative}
+.chip input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.chip span{display:inline-flex;align-items:center;gap:10px;padding:11px 16px;border:1px solid var(--fline);font-size:15px;cursor:pointer;transition:border-color .2s ease, background-color .2s ease}
+.chip span::before{content:"";width:12px;height:12px;box-sizing:border-box;border:1.5px solid var(--ink);flex:none}
+.chip input[type=radio]+span::before{border-radius:50%}
+.chip input:checked+span{border-color:var(--acc);background:var(--soft)}
+.chip input:checked+span::before{background:var(--acc);border-color:var(--acc)}
+.chip input:focus-visible+span{outline:2px solid var(--acc);outline-offset:2px}
+.consent{display:flex;gap:12px;align-items:flex-start;font-size:15px;line-height:1.5}
+.consent input{width:18px;height:18px;margin:2px 0 0;accent-color:#1F4FD1;flex:none}
+.ap-send{display:flex;flex-wrap:wrap;gap:16px 24px;align-items:center;padding-top:8px;border-top:1px solid var(--line)}
+.ap-send button{font:600 16px 'Readex Pro',system-ui,sans-serif;background:#1F4FD1;color:#FFFFFF;border:0;padding:17px 26px;cursor:pointer;transition:background-color .2s ease, transform .2s ease}
+.ap-send button:hover{background:#173A9C;transform:translateY(-1px)}
+.ap-send span{font-size:14px;color:var(--sub)}
+.ap-done{display:flex;flex-direction:column;gap:22px;padding:36px;border:1px solid var(--line);background:var(--soft)}
+.ap-done h2{margin:0;font-weight:600;font-size:32px;letter-spacing:-.015em}
+.ap-done dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:8px 20px;font-size:15px}
+.ap-done dt{color:var(--sub)} .ap-done dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.ap-done .again{align-self:flex-start;font:400 15px 'Readex Pro',system-ui,sans-serif;background:none;border:0;padding:0;color:var(--acc);text-decoration:underline;cursor:pointer}
+.mark{width:56px;height:56px}
+.mark .lit{animation:litup .6s .2s ease both;transform-box:fill-box;transform-origin:center}
+@keyframes litup{from{transform:scale(.4);opacity:0}to{transform:none;opacity:1}}
+@media (max-width:980px){
+  .ap-wrap{grid-template-columns:1fr;gap:48px;padding:48px 20px 72px}
+  .ap-side{position:static}
+  .ap h1{font-size:36px}
+}
+@media (max-width:560px){ .ap-row{grid-template-columns:1fr} .ap-done{padding:24px} }
+</style>
+<script>
+(function(){
+  var root=document.documentElement;
+  function set(m){root.setAttribute('data-mode',m);try{localStorage.setItem('sbc-mode',m)}catch(e){}}
+  window.setMode=set;
+  var saved=null;try{saved=localStorage.getItem('sbc-mode')}catch(e){}
+  var dark=false;try{dark=window.matchMedia('(prefers-color-scheme: dark)').matches}catch(e){}
+  set(saved||(dark?'night':'day'));
+  window.flipCard=function(btn){
+    var flipped=root.classList.toggle('card-flipped');
+    document.querySelectorAll('.card3d').forEach(function(c){c.classList.toggle('flipped',flipped)});
+    document.querySelectorAll('.turnlabel').forEach(function(l){l.textContent=flipped?'Turn back':'Turn the card'});
+  };
+})();
+</script>
+<script src="/assets/loader.js"></script>
+<script src="/assets/motion.js" defer></script>
+</head>
+<body>
+<div class="site"><div class="mode-day"><header class="hd" style="position: relative; z-index: 2; height: 76px; box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; gap: 32px; padding: 0 48px; border-bottom: 1px solid #CFCBC3; background: #FFFFFF; color: #1A1D24"><a href="/" aria-label="SBC Capital home" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: #1A1D24"><svg width="32" height="32" viewBox="0 0 100 100" aria-hidden="true" style="display: block; flex: none"><polygon points="50,4 89.84,27 50,50 10.16,27" fill="#1F4FD1" stroke="#FFFFFF" stroke-width="3.5" stroke-linejoin="round"></polygon><polygon points="10.16,27 50,50 50,96 10.16,73" fill="#1A1D24" stroke="#FFFFFF" stroke-width="3.5" stroke-linejoin="round"></polygon><polygon points="50,50 89.84,27 89.84,73 50,96" fill="#1A1D24" stroke="#FFFFFF" stroke-width="3.5" stroke-linejoin="round"></polygon></svg><span style="font-weight: 600; font-size: 18px">SBC Capital</span></a><nav class="hd-nav" aria-label="Main" style="display: flex; gap: 28px; align-items: center"><a class="navl" href="/companies/" style="font-size: 15px; color: #1A1D24; text-decoration: none; padding: 8px 0; font-weight: 600" aria-current="page">For companies</a><a class="navl" href="/buyers/" style="font-size: 15px; color: #1A1D24; text-decoration: none; padding: 8px 0">For buyers</a><a class="navl" href="/review/" style="font-size: 15px; color: #1A1D24; text-decoration: none; padding: 8px 0">How the review works</a></nav><div class="hd-act" style="display: flex; gap: 18px; align-items: center"><div role="group" aria-label="Colour mode" style="display: flex; gap: 2px; border: 1px solid #CFCBC3; padding: 2px"><button type="button" onclick="setMode('day')" aria-label="Day mode" aria-pressed="true" style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 0; cursor: pointer; padding: 0; background-color: #1A1D24; color: #FFFFFF"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg></button><button type="button" onclick="setMode('night')" aria-label="Night mode" aria-pressed="false" style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 0; cursor: pointer; padding: 0; background-color: transparent; color: #1A1D24"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path></svg></button></div><a href="#" lang="ar" style="font-size: 15px; color: #1A1D24">العربية</a><a class="btn" href="/companies/apply/" style="font-size: 15px; font-weight: 600; background-color: #1A1D24; color: #FFFFFF; padding: 12px 18px; text-decoration: none">Apply</a></div></header></div><div class="mode-night"><header class="hd" style="position: relative; z-index: 2; height: 76px; box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; gap: 32px; padding: 0 48px; border-bottom: 1px solid #2A2F3A; background: #1A1D24; color: #FFFFFF"><a href="/" aria-label="SBC Capital home" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: #FFFFFF"><svg width="32" height="32" viewBox="0 0 100 100" aria-hidden="true" style="display: block; flex: none"><polygon points="50,4 89.84,27 50,50 10.16,27" fill="#1F4FD1" stroke="#FFFFFF" stroke-width="3.5" stroke-linejoin="round"></polygon><polygon points="10.16,27 50,50 50,96 10.16,73" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="3.5" stroke-linejoin="round"></polygon><polygon points="50,50 89.84,27 89.84,73 50,96" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="3.5" stroke-linejoin="round"></polygon></svg><span style="font-weight: 600; font-size: 18px">SBC Capital</span></a><nav class="hd-nav" aria-label="Main" style="display: flex; gap: 28px; align-items: center"><a class="navl" href="/companies/" style="font-size: 15px; color: #FFFFFF; text-decoration: none; padding: 8px 0; font-weight: 600" aria-current="page">For companies</a><a class="navl" href="/buyers/" style="font-size: 15px; color: #FFFFFF; text-decoration: none; padding: 8px 0">For buyers</a><a class="navl" href="/review/" style="font-size: 15px; color: #FFFFFF; text-decoration: none; padding: 8px 0">How the review works</a></nav><div class="hd-act" style="display: flex; gap: 18px; align-items: center"><div role="group" aria-label="Colour mode" style="display: flex; gap: 2px; border: 1px solid #2A2F3A; padding: 2px"><button type="button" onclick="setMode('day')" aria-label="Day mode" aria-pressed="false" style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 0; cursor: pointer; padding: 0; background-color: transparent; color: #C9CDD6"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg></button><button type="button" onclick="setMode('night')" aria-label="Night mode" aria-pressed="true" style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 0; cursor: pointer; padding: 0; background-color: #FFFFFF; color: #1A1D24"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path></svg></button></div><a href="#" lang="ar" style="font-size: 15px; color: #FFFFFF">العربية</a><a class="btn" href="/companies/apply/" style="font-size: 15px; font-weight: 600; background-color: #FFFFFF; color: #1A1D24; padding: 12px 18px; text-decoration: none">Apply</a></div></header></div><main class="ap" id="top"><div class="ap-wrap">
+<aside class="ap-side">
+<span class="ap-k">For international companies · Apply</span>
+<h1>Register for the SBC review.</h1>
+<p class="ap-lede">About five minutes. This only registers your company. The evidence checklist comes after, and you can finish it over several sittings.</p>
+<div class="ap-proto" role="note"><b>Prototype</b><span>This form does not send anything yet. It shows the questions SBC will ask.</span></div>
+<ol class="ap-next" aria-label="What happens next">
+<li><span>01</span><span>You register here.</span></li>
+<li><span>02</span><span>SBC replies within two working days with your checklist, or tells you if the founding group is full.</span></li>
+<li><span>03</span><span>You upload your evidence. Two SBC officers review it in about ten working days.</span></li>
+</ol>
+</aside>
+
+<div>
+<form class="ap-form" id="reg" novalidate>
+<fieldset><legend><span>01</span>Your company</legend>
+<div class="f"><label for="co">Company name</label><input type="text" id="co" name="company" autocomplete="organization" required><span class="err" id="co-e" hidden>Enter your company's registered name.</span></div>
+<div class="ap-row">
+<div class="f"><label for="country">Country of registration</label><input type="text" id="country" name="country" list="countries" autocomplete="country-name" required><datalist id="countries"><option>United Kingdom</option><option>United States</option><option>India</option><option>Germany</option><option>France</option><option>Singapore</option><option>Philippines</option><option>Egypt</option><option>Jordan</option><option>Pakistan</option></datalist><span class="err" id="country-e" hidden>Enter the country where the company is registered.</span></div>
+<div class="f"><label for="sector">Sector</label><select id="sector" name="sector" required><option value="">Choose one</option><option>Technology and cybersecurity</option><option>Engineering and construction</option><option>Energy and utilities</option><option>Health and life sciences</option><option>Education and training</option><option>Transport and logistics</option><option>Professional services</option><option>Something else</option></select><span class="err" id="sector-e" hidden>Choose the sector closest to yours.</span></div>
+</div>
+<div class="f"><label for="web">Website<span class="opt">Optional</span></label><input type="url" id="web" name="website" placeholder="https://" autocomplete="url"></div>
+</fieldset>
+
+<fieldset><legend><span>02</span>The Gulf</legend>
+<div class="f"><span class="lab" id="mk-l">Where do you want to work?</span><div class="chips" role="group" aria-labelledby="mk-l"><label class="chip"><input type="checkbox" name="markets" value="uae"><span>United Arab Emirates</span></label><label class="chip"><input type="checkbox" name="markets" value="ksa"><span>Saudi Arabia</span></label><label class="chip"><input type="checkbox" name="markets" value="other"><span>Other GCC</span></label></div><span class="err" id="mk-e" hidden>Choose at least one market.</span></div>
+<div class="f"><span class="lab" id="lp-l">Do you have a local entity or agent there?</span><div class="chips" role="radiogroup" aria-labelledby="lp-l"><label class="chip"><input type="radio" name="local" value="yes"><span>Yes</span></label><label class="chip"><input type="radio" name="local" value="no"><span>No</span></label><label class="chip"><input type="radio" name="local" value="unsure"><span>Not sure</span></label></div><span class="hint">Either answer is fine. If you have none, your action plan lists local agents SBC has checked.</span></div>
+</fieldset>
+
+<fieldset><legend><span>03</span>You</legend>
+<div class="ap-row">
+<div class="f"><label for="nm">Your name</label><input type="text" id="nm" name="name" autocomplete="name" required><span class="err" id="nm-e" hidden>Enter your name.</span></div>
+<div class="f"><label for="role">Your role<span class="opt">Optional</span></label><input type="text" id="role" name="role" autocomplete="organization-title"></div>
+</div>
+<div class="f"><label for="em">Work email</label><input type="email" id="em" name="email" autocomplete="email" required><span class="hint">SBC sends your checklist here.</span><span class="err" id="em-e" hidden>Enter an email address like name@company.com.</span></div>
+<div class="f"><label for="note">Anything SBC should know<span class="opt">Optional</span></label><textarea id="note" name="note" placeholder="A Gulf project you are aiming for, or a buyer you already talk to"></textarea></div>
+<label class="consent" for="ok"><input type="checkbox" id="ok" name="consent" required><span>SBC Capital can contact me about this registration.</span></label><span class="err" id="ok-e" hidden>Tick this so SBC can reply to you.</span>
+</fieldset>
+
+<div class="ap-send"><button type="submit">Register my company</button><span>Nothing is shared with buyers at this stage.</span></div>
+</form>
+
+<div class="ap-done" id="done" hidden tabindex="-1" aria-live="polite">
+<svg class="mark" viewBox="0 0 100 100" aria-hidden="true"><rect x="6" y="6" width="88" height="88" fill="none" stroke="currentColor" stroke-width="4"/><rect class="lit" x="62" y="10" width="28" height="28" fill="#1F4FD1"/><text x="50" y="66" text-anchor="middle" font-family="Readex Pro, system-ui, sans-serif" font-weight="600" font-size="26" fill="currentColor">SBC</text></svg>
+<h2>Thank you. Your company is registered.</h2>
+<p style="margin:0;font-size:16px;line-height:1.6;color:var(--sub)">In the live version, SBC would email <b id="d-em" style="font-weight:600;color:var(--ink)"></b> within two working days with your checklist. This is a prototype, so nothing was sent.</p>
+<dl id="d-sum"></dl>
+<button type="button" class="again" id="again">Edit my answers</button>
+</div>
+</div>
+</div></main><div class="mode-day"><footer class="ft" style="height: 84px; box-sizing: border-box; border-top: 1px solid #CFCBC3; padding: 0 48px; display: flex; align-items: center; justify-content: space-between; gap: 40px; font-size: 14px; color: #5B6070; background: #FFFFFF"><span>SBC Capital · Meydan Grandstand, Dubai · Gulf market access</span><span style="display: flex; gap: 24px"><a href="#" style="color: #5B6070">Contact</a><a href="#" style="color: #5B6070">Privacy</a><a href="#" style="color: #5B6070">Terms of the SBC-Qualified mark</a></span></footer></div><div class="mode-night"><footer class="ft" style="height: 84px; box-sizing: border-box; border-top: 1px solid #2A2F3A; padding: 0 48px; display: flex; align-items: center; justify-content: space-between; gap: 40px; font-size: 14px; color: #A9AFBA; background: #1A1D24"><span>SBC Capital · Meydan Grandstand, Dubai · Gulf market access</span><span style="display: flex; gap: 24px"><a href="#" style="color: #A9AFBA">Contact</a><a href="#" style="color: #A9AFBA">Privacy</a><a href="#" style="color: #A9AFBA">Terms of the SBC-Qualified mark</a></span></footer></div></div><script>
+(function(){
+  var f=document.getElementById('reg'), done=document.getElementById('done');
+  function show(id,bad,el){var e=document.getElementById(id);if(e)e.hidden=!bad;if(el)el.setAttribute('aria-invalid',bad?'true':'false');return !bad;}
+  function check(){
+    var ok=true, first=null;
+    function t(el,id,bad){if(!show(id,bad,el)){ok=false;first=first||el;}}
+    t(f.company,'co-e',!f.company.value.trim());
+    t(f.country,'country-e',!f.country.value.trim());
+    t(f.sector,'sector-e',!f.sector.value);
+    var mk=f.querySelectorAll('input[name=markets]:checked').length;
+    if(!show('mk-e',!mk)){ok=false;first=first||f.querySelector('input[name=markets]');}
+    t(f.name,'nm-e',!f.name.value.trim());
+    t(f.email,'em-e',!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email.value.trim()));
+    t(f.consent,'ok-e',!f.consent.checked);
+    if(first)first.focus();
+    return ok;
+  }
+  f.addEventListener('input',function(e){var el=e.target;if(el.getAttribute('aria-invalid')==='true')check();});
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(!check())return;
+    var mk=[].map.call(f.querySelectorAll('input[name=markets]:checked'),function(x){return x.nextElementSibling.textContent}).join(', ');
+    var lp=f.querySelector('input[name=local]:checked');
+    var rows=[['Company',f.company.value],['Registered in',f.country.value],['Sector',f.sector.value],['Markets',mk],['Local presence',lp?lp.nextElementSibling.textContent:'Not answered'],['Contact',f.name.value+(f.role.value?', '+f.role.value:'')]];
+    var dl=document.getElementById('d-sum');dl.textContent='';
+    rows.forEach(function(r){var dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=r[0];dd.textContent=r[1];dl.appendChild(dt);dl.appendChild(dd);});
+    document.getElementById('d-em').textContent=f.email.value;
+    f.hidden=true;done.hidden=false;done.focus();
+    done.scrollIntoView({block:'center',behavior:'smooth'});
+  });
+  document.getElementById('again').addEventListener('click',function(){done.hidden=true;f.hidden=false;f.company.focus();});
+})();
+</script>
+</body>
+</html>
