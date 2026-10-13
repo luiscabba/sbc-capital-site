@@ -1,0 +1,8 @@
+/* Shared header fixes for every page. */
+@media (max-width:480px){
+  /* the nav (Home, For companies, For buyers, How the review works) wraps onto two lines instead of running off the edge */
+  .hd-nav{flex-wrap:wrap;overflow:visible !important;gap:2px 18px !important}
+  .hd-nav a{padding:6px 0 !important}
+  /* For buyers: the hero's own Talk to SBC button sits right below, so the header keeps to one row */
+  .hd-act a.btn[href^="#talk"]{display:none}
+}
