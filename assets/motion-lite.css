@@ -1,0 +1,30 @@
+/* Light motion for phones and touch screens (assets/motion.js adds .js-reveal there instead of .js-scroll).
+   Everything here is opacity or transform, played once per section, so the phone's compositor does the work. */
+
+@media (max-width: 900px), (hover: none) {
+  /* the drifting, blurred line layers repaint every frame: hold them still and sharp */
+  .far, .near, .cv-far, .cv-near { animation: none !important; filter: none !important; }
+  /* filter animations repaint too */
+  .hl img { animation: none !important; }
+  .pop:hover img { filter: none !important; }
+  /* keep the floating, but tell the browser to give each floater its own layer */
+  .f1, .f2, .f3, .tilt, .kb-ap, .fl-s, .c3wrap { will-change: transform; }
+  .cv-far, .cv-near, .far, .near { will-change: auto; }
+}
+
+/* headings and copy rise in once */
+.js-reveal .rv, .js-reveal .cvr { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+.js-reveal .rv.in, .js-reveal .cvr.in { opacity: 1; transform: none; }
+
+/* For companies: the hurdle steps build, staggered by each block's --at */
+.js-reveal .bu { opacity: 0; transform: translateY(18px); transition: opacity .5s ease calc(var(--at, 0) * 1.6s), transform .6s cubic-bezier(.2,.7,.2,1) calc(var(--at, 0) * 1.6s); }
+.js-reveal .bu.drop { transform: translateY(-28px); }
+.js-reveal .on .bu { opacity: 1; transform: none; }
+
+/* For companies: the calendar fills day by day */
+.js-reveal .day > span:first-child { transform: scaleY(0); transform-origin: bottom; transition: transform .45s cubic-bezier(.2,.7,.2,1) calc(var(--at, 0) * 1.8s); }
+.js-reveal .on .day > span:first-child { transform: scaleY(1); }
+
+@media (prefers-reduced-motion: reduce) {
+  .js-reveal .rv, .js-reveal .cvr, .js-reveal .bu, .js-reveal .day > span:first-child { opacity: 1 !important; transform: none !important; transition: none !important; }
+}

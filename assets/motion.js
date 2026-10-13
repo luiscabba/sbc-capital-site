@@ -6,13 +6,39 @@
   var reduce = false;
   try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
   if (reduce) return;
-  root.classList.add('js-scroll');
 
   function clamp(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
   function ready(fn) {
     if (document.readyState !== 'loading') fn();
     else document.addEventListener('DOMContentLoaded', fn);
   }
+
+  // Phones and touch screens get the light version: no per-frame scroll work.
+  // Each section plays its motion once, as cheap transitions, when it comes into view (assets/motion-lite.css).
+  var lite = false;
+  try { lite = window.matchMedia('(max-width: 900px), (hover: none)').matches; } catch (e) {}
+  if (lite) {
+    root.classList.add('js-reveal');
+    ready(function () {
+      var reveal = document.querySelectorAll('.how-h2, .mark-badge, .mark-panel > div');
+      for (var j = 0; j < reveal.length; j++) reveal[j].classList.add('rv');
+      var secs = document.querySelectorAll('.sec');
+      if (!('IntersectionObserver' in window)) {
+        for (var a = 0; a < reveal.length; a++) reveal[a].classList.add('in');
+        for (var b = 0; b < secs.length; b++) secs[b].classList.add('on');
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) { en.target.classList.add(en.target.classList.contains('sec') ? 'on' : 'in'); io.unobserve(en.target); }
+        });
+      }, { threshold: 0.2 });
+      for (var k = 0; k < reveal.length; k++) io.observe(reveal[k]);
+      for (var s = 0; s < secs.length; s++) io.observe(secs[s]);
+    });
+    return;
+  }
+  root.classList.add('js-scroll');
 
   ready(function () {
     // Hero: every block of the floating wall gets its own lift, so the wall comes apart as you scroll.
