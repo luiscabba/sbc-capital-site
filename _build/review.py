@@ -28,7 +28,7 @@ def chrome(mode):
 
 CHECKS = [
     ('Ownership to the final owner', 'Every holding company, traced until we reach the people who own it.', 'Shareholder register and an ownership chart', 'Company registries in each country in the chain'),
-    ('Sanctions screening', 'The company, its owners and its directors, screened against [sanctions lists].', 'Names and dates of birth of owners and directors', 'Screening run and dated in your file'),
+    ('Sanctions screening', 'The company, its owners and its directors, screened against [sanctions lists], then again every month while you hold the mark.', 'Names and dates of birth of owners and directors', 'Screening run and dated in your file'),
     ('Licences and certificates', 'Your trade licence and sector licences are current and name the same company.', 'Copies of each licence', 'Checked with the issuing body where it can be'),
     ('Local agent', 'A Gulf agent under contract with you, from SBC&#39;s checked panel.', 'Your signed agent agreement, or ask SBC to refer one', 'The agent&#39;s own licence and contract'),
     ('ICV certificate', 'An In-Country Value certificate from an authorised certifying body.', 'Your current ICV certificate', 'Certificate number and expiry date'),
@@ -37,7 +37,8 @@ CHECKS = [
 CSS = r'''<style>
 /* ===== How the review works ===== */
 .rw-k{font-family:'IBM Plex Mono',monospace;font-weight:500;letter-spacing:.06em;font-size:12px;color:var(--cv-sub)}
-.rw-ph{color:var(--cv-acc)}
+.rw-ph{color:var(--cv-ink);text-decoration:underline dashed;text-decoration-color:var(--cv-mute);text-decoration-thickness:1px;text-underline-offset:4px}
+.rw-tbc{font-size:13px;color:var(--cv-sub)}
 /* hero: the review file */
 .rw-file{flex:1 1 0;min-width:0;display:flex;justify-content:center}
 .rw-card{width:100%;max-width:520px;background:var(--cv-card);border:1px solid var(--cv-line);box-shadow:30px 40px 70px var(--cv-sh);transform:perspective(1600px) rotateY(-12deg) rotateX(4deg);transition:transform .6s cubic-bezier(.2,.7,.2,1)}
@@ -118,7 +119,9 @@ CSS = r'''<style>
 .rw-axis{display:grid;grid-template-columns:repeat(12,minmax(0,1fr)) minmax(0,1.6fr);gap:4px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--cv-sub)}
 .js-play .rw-yr:not(.on) .rw-months span{transform:scaleY(0)}
 .rw-months span{transform-origin:bottom;transition:transform .45s cubic-bezier(.2,.7,.2,1) calc(var(--i) * .06s)}
-.rw-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:20px}
+.rw-facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin-top:20px}
+.rw-fees{display:flex;justify-content:space-between;gap:16px;font-size:14px;color:var(--cv-sub)}
+.rw-fees b{color:var(--cv-ink);font-weight:600}
 .rw-facts div{display:flex;flex-direction:column;gap:6px;padding-top:14px;border-top:2px solid var(--cv-ink);font-size:15px;line-height:1.5;color:var(--cv-sub)}
 .rw-facts b{color:var(--cv-ink);font-weight:600;font-size:17px}
 
@@ -135,7 +138,7 @@ CSS = r'''<style>
 .rw-doors .b{border:1px solid #FFFFFF;color:#FFFFFF;font-size:16px;font-weight:600;padding:15px 24px;text-decoration:none;transition:background-color .2s ease,color .2s ease}
 .rw-doors .b:hover{background:#FFFFFF;color:#1A1D24}
 
-@media (max-width:1100px){.rw-wrap,.rw-two{padding:80px 32px}.rw-end-in{padding:88px 32px}}
+@media (max-width:1100px){.rw-wrap,.rw-two{padding:80px 32px}.rw-end-in{padding:88px 32px}.rw-facts{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:900px){
   .rw-card{transform:none}
   .rw-wrap,.rw-two{padding:56px 20px;gap:28px}
@@ -190,7 +193,7 @@ def checks(sfx):
     return ('<section class="sec cv-sec" id="checks%s" aria-label="The five checks">' % sfx +
             '<div class="rw-wrap"><div class="rw-head by-head"><h2>Five checks, each on the record.</h2><p>Every check is dated in your file, so a buyer sees exactly what was confirmed and when.</p></div>'
             '<table class="rw-t"><thead><tr><th scope="col">Check</th><th scope="col">SBC confirms</th><th scope="col">You send</th><th scope="col">Checked against</th></tr></thead><tbody>' + rows + '</tbody></table>'
-            '<span class="rw-note">The checklist arrives within 2 working days of registering. You upload at your own pace.</span></div></section>')
+            '<span class="rw-note"><b style="font-weight:600;color:var(--cv-ink)">AED 12,500 review fee, once.</b> The checklist arrives within 2 working days of registering. You upload at your own pace.</span></div></section>')
 
 
 def officers():
@@ -226,10 +229,12 @@ def year():
     axis = ''.join('<span>%s</span>' % m for m in ['Pass'] + ['M%d' % i for i in range(2, 13)] + ['Year 2'])
     return ('<section class="sec cv-sec rw-yr" aria-label="After you pass">' + bg('60%', '60%') +
             '<div class="rw-wrap"><div class="rw-head by-head"><h2>Twelve months, then a re-check.</h2><p>The mark stays valid for a year. Then SBC checks your file again so it never goes stale.</p></div>'
-            '<div class="rw-year" role="img" aria-label="Twelve months of validity after passing, then a yearly re-check"><div class="rw-months">' + months + '</div><div class="rw-axis" aria-hidden="true">' + axis + '</div></div>'
+            '<div class="rw-year" role="img" aria-label="Pass after the AED 12,500 review, twelve months of validity, then a yearly AED 4,500 re-check"><div class="rw-fees" aria-hidden="true"><span><b>AED 12,500</b> review, once</span><span><b>AED 4,500</b> re-check, yearly</span></div><div class="rw-months">' + months + '</div><div class="rw-axis" aria-hidden="true">' + axis + '</div></div>'
             '<div class="rw-facts"><div><b>AED 4,500 a year</b>To stay qualified after the first year.</div>'
-            '<div><b>Can be withdrawn</b><span>If <span class="rw-ph">[withdrawal conditions]</span>.</span></div>'
-            '<div><b>Buyers can confirm it</b><span>At <span class="rw-ph">[verification route]</span>.</span></div></div></div></section>')
+            '<div><b>Sanctions, every month</b><span>Re-screened while you hold the mark. A match withdraws it at once.</span><span class="rw-tbc">Working answer, for SBC to confirm.</span></div>'
+            '<div><b>Can be withdrawn</b><span>Also if <span class="rw-ph">[other withdrawal conditions]</span>.</span></div>'
+            '<div><b>Buyers can confirm it</b><span>At <span class="rw-ph">[verification route]</span>.</span></div></div>'
+            '<span class="rw-tbc">Underlined items in brackets are still being confirmed by SBC.</span></div></section>')
 
 
 def end(sfx):
