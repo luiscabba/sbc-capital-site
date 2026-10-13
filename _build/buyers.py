@@ -52,7 +52,7 @@ CSS = r'''<style>
 @keyframes bhq{from{opacity:0;translate:-8px 0}}
 .sbc-ready .bh-shadow{animation:bhsh 1.2s ease .5s backwards}@keyframes bhsh{from{opacity:0;transform:scaleX(.4)}}
 .sbc-ready .bh-ghost{animation:bhgh 1.4s ease 1.6s backwards}@keyframes bhgh{from{opacity:0}}
-.bh-c2 .bh-card{opacity:.92}.bh-c3 .bh-card{opacity:.78}
+.bh-c2 .bh-card{opacity:.96}.bh-c3 .bh-card{opacity:.9}
 .bh-fl{animation:cvfl 6s ease-in-out infinite}.bh-c2 .bh-fl{animation-duration:7s;animation-delay:.7s}.bh-c3 .bh-fl{animation-duration:6.4s;animation-delay:1.4s}
 .bh-card{--ry:-16deg;box-sizing:border-box;padding:3.2cqw 3.4cqw;background:var(--cv-card);border:1px solid var(--cv-revb);box-shadow:24px 30px 60px var(--cv-sh);transform:perspective(1400px) rotateY(var(--ry));display:flex;flex-direction:column;gap:2cqw;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s ease,opacity .5s ease}
 .bh-c:hover .bh-card{transform:perspective(1400px) rotateY(-4deg) translateX(-12px);box-shadow:0 30px 60px rgba(31,79,209,.18);opacity:1}
@@ -62,7 +62,7 @@ CSS = r'''<style>
 .bh-id>span{display:flex;flex-direction:column;min-width:0}
 .bh-id b{font-weight:600;font-size:max(14px,2.45cqw);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .bh-id>span>span{font-size:max(12px,1.85cqw);color:var(--cv-sub)}
-.bh-q{font-size:max(9px,1.45cqw);color:var(--cv-acc);white-space:nowrap}
+.bh-q{font-size:max(11px,1.45cqw);color:var(--cv-acc);white-space:nowrap}
 .bh-chips{display:flex;flex-wrap:wrap;gap:1.1cqw}
 .bh-chips span{display:flex;align-items:center;gap:6px;padding:.85cqw 1.45cqw;background:var(--cv-soft);font-size:max(11px,1.7cqw)}
 .bh-chips i{width:7px;height:7px;background:#1F4FD1;flex:none}
@@ -75,7 +75,7 @@ CSS = r'''<style>
 .bw-rail{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column}
 .bw-rail li{display:grid;grid-template-columns:28px 1fr auto;align-items:center;gap:12px;padding:14px 0;border-top:1px solid var(--cv-line);font-size:16px;color:var(--cv-mute);transition:color .4s ease}
 .bw-rail li .mono{font-size:11px}
-.bw-rail li .who{font-size:10px;padding:4px 8px;border:1px solid var(--cv-line);transition:background-color .4s ease,color .4s ease,border-color .4s ease}
+.bw-rail li .who{font-size:11px;padding:4px 8px;border:1px solid var(--cv-line);transition:background-color .4s ease,color .4s ease,border-color .4s ease}
 .bw-rail li.lit{color:var(--cv-ink)}
 .bw-rail li.lit .who{border-color:var(--cv-ink)}
 .bw-rail li.lit .who.sbc{background:#1F4FD1;border-color:#1F4FD1;color:#FFFFFF}
@@ -86,10 +86,10 @@ CSS = r'''<style>
 .bw-h{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 22px;border-bottom:1px solid var(--cv-line)}
 .bw-h>span{display:flex;flex-direction:column;gap:2px;font-size:15px;min-width:0}
 .bw-h>span span{font-size:13px;color:var(--cv-sub)}
-.bw-st{flex:none;font-size:10px;padding:6px 10px;background:var(--cv-soft);color:var(--cv-acc)}
+.bw-st{flex:none;font-size:11px;padding:6px 10px;background:var(--cv-soft);color:var(--cv-acc)}
 .bw-body{display:flex;flex-direction:column;gap:14px;padding:22px;min-height:470px;box-sizing:border-box}
 .bw-m{max-width:82%;box-sizing:border-box;padding:14px 18px;display:flex;flex-direction:column;gap:8px;font-size:16px;line-height:1.4;transition:opacity .5s ease,translate .5s cubic-bezier(.2,.7,.2,1)}
-.bw-m .mono{font-size:10px}
+.bw-m .mono{font-size:11px}
 .bw-you{align-self:flex-end;background:var(--cv-band);color:#FFFFFF}
 .bw-you .mono{color:#A9AFBA}
 .bw-sbc{align-self:flex-start;background:var(--cv-card);border:1px solid var(--cv-revb);color:var(--cv-ink)}
@@ -125,7 +125,7 @@ CSS = r'''<style>
 .bp-tie{position:absolute;left:52cqw;top:5cqw;width:6cqw;height:1px;background:var(--cv-revb)}
 .bp-lab{position:absolute;left:60cqw;top:5cqw;translate:0 -50%;display:flex;flex-direction:column;gap:2px;transition:opacity .4s ease}
 .bp-lab b{font-weight:600;font-size:max(13px,2.3cqw);line-height:1.2}
-.bp-lab .mono{font-size:max(9px,1.35cqw);color:var(--cv-mute)}
+.bp-lab .mono{font-size:max(11px,1.35cqw);color:var(--cv-mute)}
 .bp-top .bp-lab b{color:var(--cv-acc)}
 .bp-top .bp-tie{background:#1F4FD1}
 .bp-l:hover .bp-pw{translate:0 -1.6cqw}
@@ -142,7 +142,7 @@ CSS = r'''<style>
 .bt-in{box-sizing:border-box;min-height:330px;padding:40px;display:flex;flex-direction:column;justify-content:space-between;gap:28px}
 .bt-p1 .bt-in{animation:cvfls 6s ease-in-out infinite}.bt-p2 .bt-in{animation:cvfls 7s .8s ease-in-out infinite}
 .bt-free{background:linear-gradient(160deg,#3D6BF0 0%,#1F4FD1 60%,#173A9C 100%);color:#FFFFFF;box-shadow:0 40px 70px rgba(31,79,209,.32)}
-.bt-tag{align-self:flex-start;font-size:11px;color:#DCE5FF;border:1px solid rgba(220,229,255,.6);padding:3px 7px}
+.bt-tag{align-self:flex-start;font-size:12px;color:#FFFFFF;border:1px solid rgba(220,229,255,.6);padding:3px 7px}
 .bt-aed{font-weight:600;font-size:88px;line-height:1;letter-spacing:-.03em}
 .bt-free p{margin:0;font-size:18px;color:#DCE5FF}
 .bt-you{background:var(--cv-card);border:1px solid var(--cv-line);box-shadow:0 40px 70px var(--cv-sh)}
