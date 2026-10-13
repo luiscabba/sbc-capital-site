@@ -39,7 +39,7 @@ def svg(mode):
 
 
 CSS = '''<style id="stack-css">
-/* Home · How it works: the stack. One 9s loop; on desktop motion.js scrubs it with scroll (--hp). */
+/* Home · How it works: the stack. One 9s loop, on every screen; the rows below follow it. */
 .stack text{font-family:'Readex Pro',system-ui,sans-serif}
 .stack .st-n{font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:12px;letter-spacing:.08em}
 .stack .st-b{font-weight:600;font-size:13px}.stack .st-s{font-weight:300;font-size:12px}
@@ -57,10 +57,15 @@ CSS = '''<style id="stack-css">
 .stl3{animation-name:stl3}@keyframes stl3{0%,71%{opacity:0}75%,93%{opacity:1}98%,100%{opacity:0}}
 .stlink{animation-name:stlink}@keyframes stlink{0%,74%{opacity:0}78%,93%{opacity:1}98%,100%{opacity:0}}
 .stbuy{animation-name:stbuy}@keyframes stbuy{0%,76%{opacity:0;transform:translateY(10px)}81%,93%{opacity:1;transform:none}98%,100%{opacity:0}}
-/* desktop: scroll builds the stack in step with the rows (rows light at --hp 0, .36, .70); it holds once complete */
-.js-scroll .sec .st-an{animation-play-state:paused !important;animation-delay:calc(var(--hp,0) * -8.3s) !important}
+/* the three rows follow the same loop, so each lights as its slab lands (desktop and phones alike) */
+.how-side .row:nth-child(1),.how-side .rowd:nth-child(1){animation:hwr1 9s linear infinite}
+.how-side .row:nth-child(2),.how-side .rowd:nth-child(2){animation:hwr2 9s linear infinite}
+.how-side .row:nth-child(3),.how-side .rowd:nth-child(3){animation:hwr3 9s linear infinite}
+@keyframes hwr1{0%,29%{opacity:1}32%,96%{opacity:.38}100%{opacity:1}}
+@keyframes hwr2{0%,29%{opacity:.38}32%,63%{opacity:1}66%,100%{opacity:.38}}
+@keyframes hwr3{0%,63%{opacity:.38}66%,96%{opacity:1}100%{opacity:.38}}
 /* reduced motion: the finished stack, still */
-@media (prefers-reduced-motion: reduce){.st-an{animation:none !important}}
+@media (prefers-reduced-motion: reduce){.st-an,.how-side .row,.how-side .rowd{animation:none !important;opacity:1 !important}}
 </style>
 '''
 

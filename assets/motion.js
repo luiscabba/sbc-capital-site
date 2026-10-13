@@ -79,12 +79,7 @@
         if (label === 'Hero') {
           s.style.setProperty('--sp', clamp(-r.top / r.height).toFixed(4));
         } else if (label === 'How it works') {
-          // the block crosses the platforms as the section scrolls through the middle of the screen
-          var hp = clamp((p - 0.22) / 0.42);
-          s.style.setProperty('--hp', hp.toFixed(4));
-          var rows = s.querySelectorAll('.how-side .row, .how-side .rowd'); // .rowd: the night copy's rows
-          var marks = [0, 0.36, 0.7];
-          for (var q = 0; q < rows.length; q++) rows[q].classList.toggle('lit', hp >= marks[q]);
+          // the stack and its rows loop on their own (see the stack styles in index.html); nothing to drive here
         } else if (label === 'The mark') {
           s.style.setProperty('--mp', clamp((p - 0.18) / 0.42).toFixed(4));
         }
