@@ -7,7 +7,9 @@
   try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
   var seen = false;
   try { seen = sessionStorage.getItem('sbc-loaded') === '1'; } catch (e) {}
-  if (reduce || seen || !Element.prototype.animate) return;
+  // Pages can hold their own entrance until the loader lifts: html.sbc-ready marks that moment.
+  function ready() { root.classList.add('sbc-ready'); }
+  if (reduce || seen || !Element.prototype.animate) { ready(); return; }
   try { sessionStorage.setItem('sbc-loaded', '1'); } catch (e) {}
 
   // Cover the page from the first paint, in the right colour for the mode.
@@ -21,7 +23,7 @@
   document.head.appendChild(css);
 
   // Safety net: never leave the page covered.
-  var bail = setTimeout(function () { root.classList.remove('sbc-loading'); }, 4000);
+  var bail = setTimeout(function () { root.classList.remove('sbc-loading'); ready(); }, 4000);
 
   var NS = 'http://www.w3.org/2000/svg';
   var PAL = {
@@ -99,6 +101,7 @@
     wall.animate([{ transform: 'translateY(0)', opacity: 1 }, { transform: 'translateY(' + (-s * 2.2) + 'px)', opacity: 0 }],
       { duration: 700, delay: out, easing: 'cubic-bezier(.45,0,.2,1)', fill: 'forwards' });
     bg.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 620, delay: out + 160, easing: 'ease-out', fill: 'both' });
+    setTimeout(ready, out + 120);
     setTimeout(function () { if (box.parentNode) box.parentNode.removeChild(box); }, out + 160 + 620 + 60);
   }
 
