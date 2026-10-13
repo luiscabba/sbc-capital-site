@@ -6,3 +6,9 @@
   /* For buyers: the hero's own Talk to SBC button sits right below, so the header keeps to one row */
   .hd-act a.btn[href^="#talk"]{display:none}
 }
+@media (max-width:480px){
+  /* the Arabic "soon" label follows the old Arabic link: hidden on small phones until the menu lands */
+  .hd-act .ar-soon{display:none}
+}
+/* interim legal and contact pages: placeholders read as "to be confirmed", never as links */
+.ip-ph{color:inherit;text-decoration:underline dashed;text-decoration-color:currentColor;text-decoration-thickness:1px;text-underline-offset:4px;opacity:.85}
