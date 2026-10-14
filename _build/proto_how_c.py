@@ -128,7 +128,7 @@ JS = '''<script src="/assets/vendor/gsap.min.js"></script>
   gsap.registerPlugin(ScrollTrigger);
   document.documentElement.classList.add('gs');
   // the lock: the section holds still (pinned) for this much extra scrolling while its animation plays out
-  function lock(el,len){return {trigger:el,start:'center center',end:'+='+len,pin:true,pinSpacing:true,scrub:0.6,anticipatePin:1}}
+  function lock(el,len){return {trigger:el,start:'center center',end:'+='+len,pin:true,pinSpacing:true,scrub:1,anticipatePin:1}}
 
   function build(mode){
     var root=document.querySelector('.mode-'+mode);
@@ -159,11 +159,11 @@ JS = '''<script src="/assets/vendor/gsap.min.js"></script>
         tl.fromTo(q('.sc-st1'),{x:-140,opacity:0},{x:0,opacity:1,duration:.14,ease:'power2.out'},0)
           .fromTo(q('.sc-stl1'),{opacity:0},{opacity:1,duration:.05},.12)
           .fromTo(q('.sc-stbar'),{attr:{'stroke-dashoffset':120}},{attr:{'stroke-dashoffset':0},duration:.12,ease:'none'},.14)
-          .fromTo(q('.sc-st2'),{y:-170,opacity:0},{y:0,opacity:1,duration:.16,ease:'bounce.out'},.24)
+          .fromTo(q('.sc-st2'),{y:-170,opacity:0},{y:0,opacity:1,duration:.16,ease:'power3.out'},.24)
           .fromTo(q('.sc-stl2'),{opacity:0},{opacity:1,duration:.05},.38)
           .fromTo(q('.sc-sto1'),{attr:{fill:off}},{attr:{fill:on},duration:.03},.44)
           .fromTo(q('.sc-sto2'),{attr:{fill:off}},{attr:{fill:on},duration:.03},.5)
-          .fromTo(q('.sc-st3'),{y:-170,opacity:0},{y:0,opacity:1,duration:.16,ease:'bounce.out'},.54)
+          .fromTo(q('.sc-st3'),{y:-170,opacity:0},{y:0,opacity:1,duration:.16,ease:'power3.out'},.54)
           .fromTo(q('.sc-stl3'),{opacity:0},{opacity:1,duration:.05},.68)
           .fromTo(q('.sc-stlink'),{opacity:0},{opacity:1,duration:.06},.76)
           .fromTo(q('.sc-stbuy'),{y:10,opacity:0},{y:0,opacity:1,duration:.1},.82);
