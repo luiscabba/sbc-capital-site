@@ -546,27 +546,29 @@ html.lenis,html.lenis body{height:auto}
       var mk=root.querySelector('.mk');
       if(mk){
         var card=mk.querySelector('.mk-card'), floor=mk.querySelector('.mk-floor'), tabs=mk.querySelectorAll('.mk-tab');
-        var side=function(p){var b=p>=0.53;mk.classList.toggle('is-back',b);tabs[0].classList.toggle('on',!b);tabs[1].classList.toggle('on',b)};
+        var side=function(p){var b=p>=0.47;mk.classList.toggle('is-back',b);tabs[0].classList.toggle('on',!b);tabs[1].classList.toggle('on',b)};
         side(0);
-        gsap.timeline({scrollTrigger:Object.assign(lock(mk,'160%'),{onUpdate:function(st){side(st.progress)}})})
-          // rise: from lying back to upright, the light runs across the front
-          .fromTo(card,{'--rx':'64deg','--ry':'-20deg','--ty':'60px','--s':.9},{'--rx':'10deg','--ry':'-14deg','--ty':'0px','--s':1,duration:.24,ease:'power3.out'},0)
-          .fromTo(card,{'--sheen':'160%'},{'--sheen':'-60%',duration:.3,ease:'power1.inOut'},.04)
-          .fromTo(floor,{scaleX:.7,opacity:.4},{scaleX:1,opacity:1,duration:.24,ease:'power3.out'},0)
-          // hold to read the front, drifting a touch
-          .to(card,{'--ry':'-9deg',duration:.1,ease:'none'},.24)
-          // the turn: one move, lifting as it goes; the shadow narrows when the card is edge-on
-          .to(card,{'--ry':'186deg',duration:.38,ease:'power2.inOut'},.34)
-          .to(card,{'--ty':'-26px','--rx':'4deg',duration:.19,ease:'power1.out'},.34)
-          .to(card,{'--ty':'0px','--rx':'10deg',duration:.19,ease:'power1.in'},.53)
-          .to(floor,{scaleX:.45,opacity:.55,duration:.19,ease:'power1.out'},.34)
-          .to(floor,{scaleX:1,opacity:1,duration:.19,ease:'power1.in'},.53)
-          .fromTo(card,{'--sheen':'160%'},{'--sheen':'-60%',duration:.3,ease:'power1.inOut',immediateRender:false},.5)
-          // settle on the back and hold
-          .to(card,{'--ry':'181deg',duration:.28,ease:'none'},.72);
+        var stage=mk.querySelector('.mk-stage');
+        // arrive: while the section scrolls in, the card comes up small and softly tilted and settles upright,
+        // so it is already in place (never lying back, never cut off) by the time the section holds
+        gsap.timeline({scrollTrigger:{trigger:mk,start:'top 92%',end:'top top',scrub:.8}})
+          .fromTo(card,{'--rx':'26deg','--ry':'-26deg','--ty':'90px','--s':.78},{'--rx':'10deg','--ry':'-14deg','--ty':'0px','--s':1,ease:'power2.out',duration:1},0)
+          .fromTo(stage,{opacity:0},{opacity:1,ease:'power1.out',duration:.6},0)
+          .fromTo(floor,{scaleX:.6,opacity:.3},{scaleX:1,opacity:1,ease:'power2.out',duration:1},0);
+        // held: light runs across the front, a beat to read it, one turn, a beat on the back
+        gsap.timeline({scrollTrigger:Object.assign(lock(mk,'130%'),{onUpdate:function(st){side(st.progress)}})})
+          .fromTo(card,{'--sheen':'160%'},{'--sheen':'-60%',duration:.24,ease:'power1.inOut',immediateRender:false},0)
+          .fromTo(card,{'--ry':'-14deg'},{'--ry':'-9deg',duration:.24,ease:'none',immediateRender:false},0)
+          .fromTo(card,{'--ry':'-9deg'},{'--ry':'186deg',duration:.4,ease:'power2.inOut',immediateRender:false},.26)
+          .fromTo(card,{'--ty':'0px','--rx':'10deg'},{'--ty':'-26px','--rx':'4deg',duration:.2,ease:'power1.out',immediateRender:false},.26)
+          .fromTo(card,{'--ty':'-26px','--rx':'4deg'},{'--ty':'0px','--rx':'10deg',duration:.2,ease:'power1.in',immediateRender:false},.46)
+          .fromTo(floor,{scaleX:1,opacity:1},{scaleX:.45,opacity:.55,duration:.2,ease:'power1.out',immediateRender:false},.26)
+          .fromTo(floor,{scaleX:.45,opacity:.55},{scaleX:1,opacity:1,duration:.2,ease:'power1.in',immediateRender:false},.46)
+          .fromTo(card,{'--sheen':'160%'},{'--sheen':'-60%',duration:.26,ease:'power1.inOut',immediateRender:false},.44)
+          .fromTo(card,{'--ry':'186deg'},{'--ry':'181deg',duration:.34,ease:'none',immediateRender:false},.66);
         // desktop: the pointer tilts it a little
         if(matchMedia('(hover: hover) and (pointer: fine)').matches){
-          var tilt=mk.querySelector('.mk-tilt'), stage=mk.querySelector('.mk-stage');
+          var tilt=mk.querySelector('.mk-tilt');
           var rx=gsap.quickTo(tilt,'rotationX',{duration:.6,ease:'power3.out'}), ry=gsap.quickTo(tilt,'rotationY',{duration:.6,ease:'power3.out'});
           mk.addEventListener('pointermove',function(e){var r=stage.getBoundingClientRect();
             ry(((e.clientX-r.left)/r.width-.5)*10); rx(-((e.clientY-r.top)/r.height-.5)*8)});
