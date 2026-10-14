@@ -1,14 +1,79 @@
-/* Shared header fixes for every page. */
-@media (max-width:480px){
-  /* the nav (Home, For companies, For buyers, How the review works) wraps onto two lines instead of running off the edge */
-  .hd-nav{flex-wrap:wrap;overflow:visible !important;gap:2px 18px !important}
-  .hd-nav a{padding:6px 0 !important}
-  /* For buyers: the hero's own Talk to SBC button sits right below, so the header keeps to one row */
-  .hd-act a.btn[href^="#talk"]{display:none}
+/* Shared header rules for every page. */
+
+/* Night: the header's page action goes cobalt, like the hero buttons */
+.mode-night .hd-act a.btn{background-color:#1F4FD1 !important;color:#FFFFFF !important}
+.mode-night .hd-act a.btn:hover{background-color:#1A43B5 !important}
+
+/* ---------- phone and tablet header (assets/menu.js builds the sheet) ---------- */
+.hd-menu,.hm-sheet{display:none}
+@media (max-width:900px){
+  html .hd{height:60px !important;flex-wrap:nowrap !important;padding:0 16px !important;gap:8px !important}
+  html .hd > a[aria-label="SBC Capital home"]{gap:9px !important;min-width:0;height:44px}
+  html .hd > a[aria-label="SBC Capital home"] svg{width:26px;height:26px}
+  html .hd > a[aria-label="SBC Capital home"] span{font-size:16px !important;white-space:nowrap}
+  html .hd-nav{display:none !important}
+  html .hd-act{gap:8px !important;flex:none}
+  html .hd-act > [role="group"],html .hd-act .ar-soon{display:none !important}
+  html .hd-act a.btn{display:inline-flex !important;align-items:center;height:44px;box-sizing:border-box;padding:0 14px !important;font-size:14px !important;white-space:nowrap}
+  .hd-menu{display:inline-flex;align-items:center;gap:8px;height:44px;min-width:44px;box-sizing:border-box;padding:0 12px;border:1px solid #CFCBC3;background:transparent;color:#1A1D24;font:inherit;font-size:14px;font-weight:400;cursor:pointer;-webkit-tap-highlight-color:transparent}
+  .mode-night .hd-menu{border-color:#3A3F4A;color:#FFFFFF}
+  .hd-menu:focus-visible,.hm-sheet a:focus-visible,.hm-sheet button:focus-visible{outline:2px solid #1F4FD1;outline-offset:2px}
+
+  /* the sheet: full screen, one per mode copy, shown for the active mode */
+  .hm-sheet{--bg:#FFFFFF;--fg:#1A1D24;--mu:#5B6070;--ln:#CFCBC3;--btn-bg:#1A1D24;--btn-fg:#FFFFFF;
+    display:flex;flex-direction:column;position:fixed;inset:0;z-index:1000;background:var(--bg);color:var(--fg);
+    font-family:'Readex Pro',system-ui,sans-serif;font-weight:300;
+    padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px);
+    overflow-y:auto;overscroll-behavior:contain;
+    opacity:0;visibility:hidden;transform:translateY(-8px);
+    transition:opacity .22s ease,transform .32s cubic-bezier(.2,.8,.2,1),visibility 0s linear .32s}
+  .hm-sheet.hm-night{--bg:#1A1D24;--fg:#FFFFFF;--mu:#A9AFBA;--ln:#2A2F3A;--btn-bg:#1F4FD1;--btn-fg:#FFFFFF}
+  html.hm-open{overflow:hidden}
+  html.hm-open[data-mode="day"] .hm-day,html.hm-open[data-mode="night"] .hm-night{opacity:1;visibility:visible;transform:none;transition:opacity .22s ease,transform .32s cubic-bezier(.2,.8,.2,1)}
+
+  .hm-bar{flex:none;height:60px;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 16px;border-bottom:1px solid var(--ln)}
+  .hm-logo{display:flex;align-items:center;height:44px;gap:9px;color:var(--fg);text-decoration:none;min-width:0}
+  .hm-logo svg{width:26px;height:26px}
+  .hm-logo span{font-weight:600;font-size:16px !important;white-space:nowrap}
+  .hm-r{display:flex;align-items:center;gap:8px;flex:none}
+  .hm-act{display:inline-flex;align-items:center;height:44px;padding:0 14px;font-size:14px;font-weight:600;background:var(--btn-bg);color:var(--btn-fg);text-decoration:none;white-space:nowrap}
+  .hm-sheet .hd-menu{display:inline-flex;border-color:var(--ln);color:var(--fg)}
+
+  .hm-nav{display:flex;flex-direction:column;padding:8px 16px 0}
+  .hm-nav a{display:grid;grid-template-columns:1fr auto;align-items:center;gap:12px;min-height:72px;padding:10px 0;border-bottom:1px solid var(--ln);color:var(--fg);text-decoration:none;
+    opacity:0;transform:translateY(8px);transition:opacity .3s ease,transform .45s cubic-bezier(.2,.8,.2,1)}
+  html.hm-open .hm-nav a{opacity:1;transform:none;transition-delay:calc(60ms + var(--d,0ms))}
+  .hm-nav b{display:block;font-weight:600;font-size:20px;line-height:1.25}
+  .hm-nav small{display:block;font-size:14px;line-height:1.4;color:var(--mu);margin-top:2px}
+  .hm-nav a[aria-current] b::after{content:"";display:inline-block;width:7px;height:7px;background:#1F4FD1;margin-left:9px;vertical-align:middle}
+  .hm-arr{color:var(--mu);font-size:18px;transition:transform .25s ease,color .25s ease}
+  .hm-nav a:active .hm-arr,.hm-nav a:hover .hm-arr{transform:translateX(4px);color:#1F4FD1}
+
+  .hm-foot{margin-top:auto;display:flex;flex-direction:column;gap:14px;padding:28px 16px 20px}
+  .hm-cta{display:flex;align-items:center;justify-content:center;height:52px;font-weight:600;font-size:16px;background:var(--btn-bg);color:var(--btn-fg);text-decoration:none}
+  .hm-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .hm-mode{display:flex;gap:2px;padding:2px;border:1px solid var(--ln)}
+  .hm-mode button{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;padding:0;border:0;background:transparent;color:var(--fg);cursor:pointer}
+  .hm-mode button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+  .hm-ar{font-size:15px;color:var(--mu);white-space:nowrap}
+
+  /* the two-line icon turns into an X */
+  .hm-ic{position:relative;display:block;width:16px;height:10px}
+  .hm-ic i{position:absolute;left:0;right:0;height:1.5px;background:currentColor}
+  .hm-ic i:first-child{top:1px}.hm-ic i:last-child{top:7.5px}
+  .hm-ic.x i{top:4.5px}.hm-ic.x i:first-child{transform:rotate(45deg)}.hm-ic.x i:last-child{transform:rotate(-45deg)}
 }
-@media (max-width:480px){
-  /* the Arabic "soon" label follows the old Arabic link: hidden on small phones until the menu lands */
-  .hd-act .ar-soon{display:none}
+@media (max-width:379px){
+  html .hd,.hm-bar{padding:0 12px !important}
+  html .hd-act,.hm-r{gap:6px !important}
+  html .hd-act a.btn,.hm-act{padding:0 11px !important}
+  .hd-menu{padding:0 10px}
 }
+@media (max-width:339px){
+  html .hd-menu > span:last-child,.hm-sheet .hd-menu > span:last-child{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  html .hd > a[aria-label="SBC Capital home"] span,.hm-logo span{font-size:15px !important}
+}
+@media (prefers-reduced-motion: reduce){.hm-sheet,.hm-nav a{transition:none !important;transform:none !important}}
+
 /* interim legal and contact pages: placeholders read as "to be confirmed", never as links */
 .ip-ph{color:inherit;text-decoration:underline dashed;text-decoration-color:currentColor;text-decoration-thickness:1px;text-underline-offset:4px;opacity:.85}
