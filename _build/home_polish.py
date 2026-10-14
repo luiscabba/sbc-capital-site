@@ -3,7 +3,7 @@
      Off for reduced motion; touch keeps native scrolling.
   2. The night hero's solid button is cobalt, not white, so it no longer reads as a selected toggle.
   3. Hero wall: the cubes fly in and lock together when the page opens (after the loader), and burst apart as you
-     scroll down while the cobalt block rises out of the crowd. Replaces motion.js's simple scroll lift.
+     scroll past (no hold) while the cobalt block rises out of the crowd. Replaces motion.js's simple scroll lift.
 Re-run safe. Run from the repo root: python3 _build/home_polish.py
 """
 import re
@@ -79,9 +79,8 @@ JS = '''<script src="/assets/vendor/lenis.min.js"></script>
       if(haloG) form.fromTo(haloG,{opacity:0},{opacity:1,duration:.8,ease:'power1.out'},1.45);
       if(shadow) form.fromTo(shadow,{opacity:0},{opacity:.45,duration:1.2,ease:'power1.out'},.2);
       // splitting: the wall bursts outward as the hero scrolls away; the cobalt block rises and grows
-      // desktop: the hero holds while it bursts; phones (hero taller than the screen): it bursts as it scrolls past
-      var split=gsap.timeline({scrollTrigger:small?{trigger:hero,start:'top top',end:'bottom 20%',scrub:1}
-        :{trigger:hero,start:'top top',end:'+=85%',pin:true,pinSpacing:true,scrub:1,anticipatePin:1,refreshPriority:1}});
+      // no hold here: the wall bursts as the hero scrolls past, moving early so it reads before the hero leaves
+      var split=gsap.timeline({scrollTrigger:{trigger:hero,start:'top top',end:small?'bottom 20%':'bottom 45%',scrub:.8}});
       cubes.forEach(function(c,i){
         var b=box[i], dx=b.x-cx, dy=b.y-cy, d=Math.hypot(dx,dy)||1, ux=dx/d, uy=dy/d;
         if(c===lit){
