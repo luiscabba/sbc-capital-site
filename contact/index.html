@@ -334,6 +334,11 @@ html[data-mode="night"] body{background:#1A1D24}
   .cv-hero .stage{flex:none;width:100%}
   .cv-split{flex-direction:column;align-items:stretch;padding:72px 32px}
   .cv-copy{flex:none}
+  .cv-wide{padding:88px 32px}
+  .ap-in{padding:96px 32px 48px}
+}
+@media (min-width:901px) and (max-width:1180px){
+  .segs{grid-template-columns:minmax(104px,1fr) minmax(136px,2fr) minmax(112px,3fr) 10fr minmax(84px,1fr)}
 }
 @media (max-width:900px){
   .cv-sec h1{font-size:38px}
@@ -466,6 +471,9 @@ html[data-mode="night"] body{background:#1A1D24}
   .ip{padding:48px 20px 72px;gap:40px}
   .ip-top h1{font-size:38px}
   .ip-ways{grid-template-columns:1fr 1fr}
+  .ip-ways div:first-child{grid-column:1/-1}
+  .ip-toc{gap:0 20px}
+  .ip-toc a{display:inline-flex;align-items:center;min-height:44px;padding:0}
   .ip-ways div{border-right:0;margin-right:0;padding:18px 12px 18px 0;border-bottom:1px solid var(--cv-line)}
   .ip-routes a{font-size:17px;flex-wrap:wrap}
   .ip-split,.ip-rules{grid-template-columns:1fr}

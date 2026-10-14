@@ -486,6 +486,26 @@ html.lenis,html.lenis body{height:auto}
 .lenis.lenis-smooth{scroll-behavior:auto !important}
 .lenis.lenis-stopped{overflow:hidden}
 </style>
+<style id="home-finish">
+/* ===== Home final polish ===== */
+@media (min-width:901px) and (max-width:1180px){
+  .hc-in{padding:40px 40px !important;gap:48px !important}
+  .hc-art{width:min(440px,calc(100vh - 210px)) !important;width:min(440px,calc(100svh - 210px)) !important}
+  .hc-copy{gap:16px !important}
+  .hc-copy h2{text-wrap:balance}
+  .cv-copy > div:first-child,.hero-text > div:first-child{font-size:11px !important;letter-spacing:.06em !important;gap:8px 10px !important;flex-wrap:nowrap !important;white-space:nowrap}
+}
+.hc-copy h2,.mk-head h2,.home-end h2{text-wrap:balance}
+.mk-head{position:relative;z-index:3}
+@media (max-width:600px){
+  .hc-stack .st-n{font-size:20px}
+  .hc-stack .st-b{font-size:19px}
+  .hc-stack .st-s{display:none}
+  .mk-k{font-size:12px !important}
+  .mk-tabs{font-size:11px !important;align-items:end}
+  .mk-stage{padding-top:44px !important}
+}
+</style>
 </head>
 <body>
 <div class="site"><div style="width: 100%; box-sizing: border-box; font-family: 'Readex Pro', system-ui, sans-serif; font-weight: 300; position: relative; overflow: hidden">
@@ -579,7 +599,7 @@ html.lenis,html.lenis body{height:auto}
       // ===== Closing band: the groundwork becomes the skyline while locked =====
       var end=root.querySelector('.home-end');
       if(end&&end.querySelector('.i2i-b')){
-        gsap.timeline({scrollTrigger:lock(end,'100%')})
+        gsap.timeline({scrollTrigger:Object.assign(lock(end,'70%'),{start:'bottom bottom'})})
           .fromTo(end.querySelector('.i2i-b'),{clipPath:'inset(0 0 0 100%)'},{clipPath:'inset(0 0 0 0%)',ease:'none',duration:1},0)
           .fromTo(end.querySelector('.i2i-seam'),{left:'100%'},{left:'0%',ease:'none',duration:1},0)
           .fromTo(end.querySelector('.i2i-a'),{scale:1.08},{scale:1,ease:'none',duration:1},0);

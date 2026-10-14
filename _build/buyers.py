@@ -229,6 +229,8 @@ textarea.bk-fi{min-height:88px;resize:vertical}
 .js-reveal .on .bp-l{translate:0 calc(var(--j) * var(--gap,-11cqw))}
 .js-reveal .on .bp-lab{opacity:1}
 @media (max-width:900px){.js-reveal .on .bp-l,.bp-l{--gap:-12cqw}}
+@media (min-width:601px) and (max-width:1180px){.bp-pw{left:8cqw}}
+@media (max-width:600px){.js-reveal .on .bp-l,.bp-l{--gap:-15cqw}.bp-stage{aspect-ratio:100/124}.bp-pw{left:7cqw}.bp-tie{left:52cqw;width:4cqw}.bp-lab{left:58cqw;right:0}.bp-lab b{font-size:13px;line-height:1.25}}
 @media (prefers-reduced-motion: reduce){
   .bh-fl,.bt-in,.bk-card,.bk-photo img,.bw-dots i{animation:none !important}
   .bp-l,.bp-lab{transition:none !important}
@@ -354,16 +356,16 @@ SCRIPT = r'''<script>
     function at(t,fn){timers.push(setTimeout(fn,t))}
     function run(){
       running=true;timers.forEach(clearTimeout);timers=[];
-      show(0);                         // the last round fades out together
-      var t=700;
-      [1,2,3,4].forEach(function(k){
+      show(1);                         // the need stays on screen; SBC's replies replay after it
+      var t=900;
+      [2,3,4].forEach(function(k){
         if(k===2||k===3){at(t,function(){typing(k,true)});t+=900;}
         at(t,function(){typing(k,false);show(k)});t+=k===1?700:1100;
       });
       at(t+2600,function(){running=false;if(vis)run()}); // hold the finished thread, then go again
     }
     if(reduce||!hasIO){show(4);return}
-    win.classList.add('js-thread');show(0);
+    win.classList.add('js-thread');show(1);
     // the hidden day or night copy never intersects, so only the visible one runs
     new IntersectionObserver(function(es){es.forEach(function(en){vis=en.isIntersecting;if(vis&&!running)run()})},{threshold:.35}).observe(win);
   });

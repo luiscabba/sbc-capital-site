@@ -4,6 +4,31 @@
 .mode-night .hd-act a.btn{background-color:#1F4FD1 !important;color:#FFFFFF !important}
 .mode-night .hd-act a.btn:hover{background-color:#1A43B5 !important}
 
+/* Night: the inner pages' hero buttons go cobalt too, matching Home */
+.mode-night a.cv-btn{background-color:#1F4FD1 !important;color:#FFFFFF !important}
+.mode-night a.cv-btn:hover{background-color:#1A43B5 !important}
+
+/* narrow desktops: the header stays on one line */
+@media (min-width:901px) and (max-width:1180px){
+  html .hd{gap:20px !important;padding:0 32px !important}
+  html .hd *{white-space:nowrap}
+  html .hd-nav{gap:20px !important}
+  html .hd-nav a{font-size:14px !important}
+  html .hd-act{gap:12px !important}
+}
+@media (min-width:901px) and (max-width:1040px){
+  html .hd-act .ar-soon{display:none !important}
+  html .hd-nav{gap:16px !important}
+}
+
+/* phones: footer links become proper tap targets */
+@media (max-width:600px){
+  html .ft{height:auto !important;flex-direction:column !important;align-items:flex-start !important;gap:8px !important;padding:24px 16px 20px !important}
+  html .ft > span:first-child{text-wrap:balance}
+  html .ft > span:last-child{flex-wrap:wrap;gap:0 24px !important}
+  html .ft > span:last-child a{display:inline-flex;align-items:center;min-height:44px}
+}
+
 /* ---------- phone and tablet header (assets/menu.js builds the sheet) ---------- */
 .hd-menu,.hm-sheet{display:none}
 @media (max-width:900px){

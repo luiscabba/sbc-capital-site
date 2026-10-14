@@ -28,7 +28,7 @@ def chrome(mode):
 
 CHECKS = [
     ('Ownership to the final owner', 'Every holding company, traced until we reach the people who own it.', 'Shareholder register and an ownership chart', 'Company registries in each country in the chain'),
-    ('Sanctions screening', 'The company, its owners and its directors, screened against [sanctions lists], then again every month while you hold the mark.', 'Names and dates of birth of owners and directors', 'Screening run and dated in your file'),
+    ('Sanctions screening', 'The company, its owners and its directors, screened against <span class="rw-ph">[sanctions lists]</span>, then again every month while you hold the mark.', 'Names and dates of birth of owners and directors', 'Screening run and dated in your file'),
     ('Licences and certificates', 'Your trade licence and sector licences are current and name the same company.', 'Copies of each licence', 'Checked with the issuing body where it can be'),
     ('Local agent', 'A Gulf agent under contract with you, from SBC&#39;s checked panel.', 'Your signed agent agreement, or ask SBC to refer one', 'The agent&#39;s own licence and contract'),
     ('ICV certificate', 'An In-Country Value certificate from an authorised certifying body.', 'Your current ICV certificate', 'Certificate number and expiry date'),
@@ -87,9 +87,9 @@ CSS = r'''<style>
 .rw-off b{font-size:16px;font-weight:600;color:var(--cv-ink)}
 .rw-off svg{width:34px;height:34px}
 .rw-mark{flex:none;width:150px;height:150px;color:var(--cv-ink)}
-.rw-mark .edge{stroke-dasharray:540;stroke-dashoffset:0}
+.rw-mark .edge{stroke-dasharray:704;stroke-dashoffset:0}
 .rw-mark .h1,.rw-mark .h2{transform-box:fill-box;transform-origin:left}
-.js-play .rw-two:not(.on) .rw-mark .edge{stroke-dashoffset:540}
+.js-play .rw-two:not(.on) .rw-mark .edge{stroke-dashoffset:704}
 .js-play .rw-two:not(.on) .rw-mark .h1,.js-play .rw-two:not(.on) .rw-mark .h2{transform:scaleX(0)}
 .rw-two .rw-mark .edge{transition:stroke-dashoffset 1.2s ease .2s}
 .rw-two .rw-mark .h1{transition:transform .5s ease 1.4s}
@@ -138,6 +138,7 @@ CSS = r'''<style>
 .rw-doors .b{border:1px solid #FFFFFF;color:#FFFFFF;font-size:16px;font-weight:600;padding:15px 24px;text-decoration:none;transition:background-color .2s ease,color .2s ease}
 .rw-doors .b:hover{background:#FFFFFF;color:#1A1D24}
 
+@media (min-width:901px) and (max-width:1180px){.rw-pair{flex-wrap:wrap;gap:12px}.rw-off{flex:1 1 0}.rw-plus:last-of-type{display:none}.rw-mark{flex-basis:100%;width:120px;height:120px;margin-top:8px}}
 @media (max-width:1100px){.rw-wrap,.rw-two{padding:80px 32px}.rw-end-in{padding:88px 32px}.rw-facts{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:900px){
   .rw-card{transform:none}
@@ -154,9 +155,9 @@ CSS = r'''<style>
   .rw-mark{width:110px;height:110px;flex-basis:100%;margin-top:8px}
   .rw-fork{grid-template-columns:1fr}
   .rw-out{padding:24px}
-  .rw-months,.rw-axis{grid-template-columns:repeat(12,minmax(0,1fr)) minmax(0,3fr)}
-  .rw-months span{height:30px}.rw-months .re{height:46px;font-size:11px;padding:5px}
-  .rw-axis span:not(:first-child):not(:nth-child(6)):not(:nth-child(12)):not(:last-child){visibility:hidden}
+  .rw-months,.rw-axis{grid-template-columns:repeat(12,minmax(0,1fr)) minmax(0,4fr)}
+  .rw-months span{height:30px}.rw-months .re{height:46px;font-size:11px;padding:5px;white-space:nowrap}
+  .rw-axis span:not(:first-child):not(:nth-child(6)):not(:last-child){visibility:hidden}
   .rw-facts{grid-template-columns:1fr;gap:18px}
   .rw-end-in{padding:72px 20px}
   .rw-end h2{font-size:38px}

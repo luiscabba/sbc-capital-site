@@ -80,6 +80,9 @@ CSS = r'''<style>
   .ip{padding:48px 20px 72px;gap:40px}
   .ip-top h1{font-size:38px}
   .ip-ways{grid-template-columns:1fr 1fr}
+  .ip-ways div:first-child{grid-column:1/-1}
+  .ip-toc{gap:0 20px}
+  .ip-toc a{display:inline-flex;align-items:center;min-height:44px;padding:0}
   .ip-ways div{border-right:0;margin-right:0;padding:18px 12px 18px 0;border-bottom:1px solid var(--cv-line)}
   .ip-routes a{font-size:17px;flex-wrap:wrap}
   .ip-split,.ip-rules{grid-template-columns:1fr}
@@ -145,7 +148,7 @@ def terms(sfx):
         'That SBC acts as the company&#39;s agent. SBC refers companies to checked local agents.',
         'A judgement on the quality of the company&#39;s work %s.' % ph('to confirm')])
     return ('<main class="ip">'
-            '<div class="ip-top"><h1>Terms of the SBC-Qualified mark.</h1><p>What the mark means, what it does not, and how it stays honest. Interim terms; the binding version follows %s.</p></div>' % ph('date') +
+            '<div class="ip-top"><h1>Terms of the <span style="white-space:nowrap">SBC-Qualified</span> mark.</h1><p>What the mark means, what it does not, and how it stays honest. Interim terms; the binding version follows %s.</p></div>' % ph('date') +
             '<div class="ip-split"><div class="ip-yes"><div class="ip-head">' + QM + '<h2>It means</h2></div><ul>' + yes + '</ul></div>'
             '<div class="ip-no"><div class="ip-head"><h2>It does not mean</h2></div><ul>' + no + '</ul></div></div>'
             '<div class="ip-rules">'
