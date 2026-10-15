@@ -105,14 +105,14 @@ def contact(sfx):
             '<div><span>Hours</span><b>%s</b>Gulf Standard Time</div></div>' % ph('working hours') +
             '<div class="ip-routes" aria-label="Where to go next">'
             '<a href="/companies/apply/"><span><b>An international company?</b><br>Register for the SBC review.</span><i aria-hidden="true">&#8594;</i></a>'
-            '<a href="/buyers/#talk%s"><span><b>A Gulf buyer?</b><br>Post a need. It costs you nothing.</span><i aria-hidden="true">&#8594;</i></a>' % sfx +
+            '<a href="/buyers/#talk%s"><span><b>A Gulf buyer?</b><br>Post a need. It costs you nothing (working answer, for SBC to confirm).</span><i aria-hidden="true">&#8594;</i></a>' % sfx +
             '<a href="/mark-terms/"><span><b>Checking the SBC-Qualified mark?</b><br>Read what it means and how to confirm it.</span><i aria-hidden="true">&#8594;</i></a></div>'
             + FOOT + '</main>')
 
 
 PRIV = [
     ('collect', 'What we collect', [
-        'From companies: your registration answers and the documents for the five checks (ownership, sanctions details, licences, agent agreement, ICV certificate).',
+        'From companies: your registration answers and the documents for the five checks (identity, ownership, licences and certifications, screening details, Gulf readiness).',
         'From buyers: the need you post and the contact details you give us.',
         'From visitors: %s. The site remembers your day or night choice in your own browser only.' % ph('analytics, if any')]),
     ('why', 'Why we use it', [
@@ -138,14 +138,15 @@ def privacy(sfx):
 
 def terms(sfx):
     yes = ''.join('<li><span>%s</span></li>' % x for x in [
-        'The company passed all five checks: ownership to the final owner, sanctions, licences and certificates, local agent, and ICV (In-Country Value) certificate.',
+        'The company passed all five checks: identity, ownership to the final owner, licences and certifications, screening, and Gulf readiness.',
+        'Gulf readiness means local content (ICV, In-Country Value) and local presence were assessed against the target country&#39;s rules. An ICV certificate or a local agent is not a pass condition.',
         'Two SBC officers reviewed the file separately and both approved it.',
         'It is valid for 12 months from the date of passing.',
-        'Sanctions are re-screened every month while the mark is held (working answer, for SBC to confirm).'])
+        'The company, its owners and directors are re-screened every month while the mark is held (working answer, for SBC to confirm).'])
     no = ''.join('<li><span>%s</span></li>' % x for x in [
         'A government licence, registration or approval.',
         'A promised contract, tender award or introduction.',
-        'That SBC acts as the company&#39;s agent. SBC refers companies to checked local agents.',
+        'That SBC acts as the company&#39;s agent. SBC refers companies to local agents it has reviewed.',
         'A judgement on the quality of the company&#39;s work %s.' % ph('to confirm')])
     return ('<main class="ip">'
             '<div class="ip-top"><h1>Terms of the <span style="white-space:nowrap">SBC-Qualified</span> mark.</h1><p>What the mark means, what it does not, and how it stays honest. Interim terms; the binding version follows %s.</p></div>' % ph('date') +
@@ -153,7 +154,7 @@ def terms(sfx):
             '<div class="ip-no"><div class="ip-head"><h2>It does not mean</h2></div><ul>' + no + '</ul></div></div>'
             '<div class="ip-rules">'
             '<div><h2>Using the mark</h2><p>Only while it is valid, and only as %s.</p></div>' % ph('display rules: where, how, minimum size') +
-            '<div><h2>Re-check and withdrawal</h2><p><b>AED 4,500 a year</b> to re-check after the first year. Withdrawn at once on a sanctions match, and also if %s. Appeals: %s.</p></div>' % (ph('other withdrawal conditions'), ph('appeal route')) +
+            '<div><h2>Re-check and withdrawal</h2><p><b>AED 4,500 a year</b> (working answer, for SBC to confirm) to re-check after the first year. Withdrawn at once on a sanctions match, and also if %s. Appeals: %s.</p></div>' % (ph('other withdrawal conditions'), ph('appeal route')) +
             '<div><h2>Confirming a company</h2><p>Buyers can confirm a company&#39;s status at %s.</p></div></div>' % ph('verification route') +
             FOOT + '</main>')
 

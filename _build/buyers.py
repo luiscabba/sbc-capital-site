@@ -145,6 +145,7 @@ CSS = r'''<style>
 .bt-tag{align-self:flex-start;font-size:12px;color:#FFFFFF;border:1px solid rgba(220,229,255,.6);padding:3px 7px}
 .bt-aed{font-weight:600;font-size:88px;line-height:1;letter-spacing:-.03em}
 .bt-free p{margin:0;font-size:18px;color:#DCE5FF}
+.bt-tbc{font-size:13px;color:#DCE5FF;opacity:.85}
 .bt-you{background:var(--cv-card);border:1px solid var(--cv-line);box-shadow:0 40px 70px var(--cv-sh)}
 .bt-co{display:flex;align-items:center;gap:12px}
 .bt-co img{width:40px;flex:none}
@@ -256,15 +257,15 @@ def hero(mode, sfx):
     cards = [('bh-c3', 'Water treatment contractor', 'Germany'),
              ('bh-c2', 'Cybersecurity training', 'United Kingdom'),
              ('bh-c1', 'Rail signalling engineer', 'India')]
-    chips = ''.join('<span style="--i:%d"><i></i>%s</span>' % (i, c) for i, c in enumerate(('Ownership', 'Sanctions', 'Licences', 'Agent', 'ICV')))
+    chips = ''.join('<span style="--i:%d"><i></i>%s</span>' % (i, c) for i, c in enumerate(('Identity', 'Ownership', 'Licences', 'Screening', 'Readiness')))
     cs = ''.join('<div class="bh-c %s"><div class="bh-fl"><div class="bh-card"><div class="bh-top"><span class="bh-id">%s<span><b>%s</b><span>%s</span></span></span><span class="mono bh-q">SBC-Qualified</span></div><div class="bh-chips">%s</div></div></div></div>'
                  % (c, QM, t, w, chips) for c, t, w in cards)
     ghosts = ''.join('<img class="bh-ghost" src="%s" alt="" style="left:%s;top:%s;width:%s">' % (cube(mode, 'ghost'), l, t, w)
                      for l, t, w in (('90%', '4%', '7%'), ('95%', '30%', '6%'), ('92%', '74%', '6.5%'), ('-2%', '86%', '5.5%')))
     return ('<section class="sec cv-sec" aria-label="Hero">' + bg('72%', '50%') +
-            '<div class="cv-hero"><div class="cv-copy"><span class="cv-k rise">For Gulf buyers</span><h1 class="rise">Suppliers, already checked.</h1><p class="rise2">Posting a need is free.</p>'
+            '<div class="cv-hero"><div class="cv-copy"><span class="cv-k rise">For Gulf buyers</span><h1 class="rise">Suppliers, already checked.</h1><p class="rise2">Posting a need is free.</p><p class="cv-fine rise2">Working answer, for SBC to confirm.</p>'
             '<div class="cv-btns rise3"><a class="btn cv-btn" href="#talk%s">Talk to SBC</a><a class="cv-ghost" href="#pack%s">See what arrives</a></div></div>' % (sfx, sfx) +
-            '<div class="bh-stage" role="img" aria-label="A shortlist of three international suppliers, each marked SBC-Qualified, with ownership, sanctions, licences and ICV checked">'
+            '<div class="bh-stage" role="img" aria-label="A shortlist of three international suppliers, each marked SBC-Qualified, with identity, ownership, licences, screening and Gulf readiness reviewed">'
             + ghosts + '<img class="bh-shadow" src="/assets/img/sbc/shadow.svg" alt="">' + cs + '</div></div></section>')
 
 
@@ -294,17 +295,18 @@ def how(mode, sfx):
 
 def pack(mode, sfx):
     # bottom of the stack first; the officer's approval caps it
-    L = [('Ownership to the final owner', 'Checked [date]', '#F8F9FD', '#D3DBF1', '#262B38', '#3A3F4A'),
-         ('Sanctions screening', 'Run [date]', '#F3F5FB', '#D3DBF1', '#2A3040', '#3E4558'),
-         ('Licences and certificates', 'Valid', '#EEF2FC', '#C9D2EA', '#2C3448', '#434C66'),
-         ('Local agent', 'Appointed', '#E7ECF9', '#C3CFEE', '#2F3A5C', '#3E4C78'),
-         ('ICV (In-Country Value) certificate', 'Issued [date]', '#DCE4F8', '#B8C6EC', '#33416B', '#465A92'),
+    L = [('Identity', 'Confirmed [date]', '#F8F9FD', '#D3DBF1', '#262B38', '#3A3F4A'),
+         ('Ownership to the final owner', 'Reviewed [date]', '#F3F5FB', '#D3DBF1', '#2A3040', '#3E4558'),
+         ('Licences and certifications', 'Valid', '#EEF2FC', '#C9D2EA', '#2C3448', '#434C66'),
+         ('Screening', 'Run [date]', '#E7ECF9', '#C3CFEE', '#2F3A5C', '#3E4C78'),
+         ('Gulf readiness', 'Assessed [date]', '#DCE4F8', '#B8C6EC', '#33416B', '#465A92'),
          ('Officer approval', 'Signed [date]', '#1F4FD1', '#1F4FD1', '#1F4FD1', '#5B82FF')]
     layers = ''.join('<div class="bp-l%s" style="--j:%d;--d-bg:%s;--d-bd:%s;--n-bg:%s;--n-bd:%s"><div class="bp-pw"><div class="bp-plate"></div></div><span class="bp-tie"></span><span class="bp-lab"><b>%s</b><span class="mono">%s</span></span></div>'
                      % (' bp-top' if j == 5 else '', j, a, b, c, d, t, s) for j, (t, s, a, b, c, d) in enumerate(L))
     return ('<section class="sec cv-sec" id="pack%s" aria-label="What arrives">' % sfx + bg('64%', '54%') +
-            '<div class="cv-split"><div class="cv-copy by-head"><span class="cv-k">What arrives</span><h2>Five checks, one signed pack.</h2><p class="cv-sub">Each dated. Signed by an officer.</p></div>'
-            '<div class="bp-stage" role="img" aria-label="The introduction pack as a stack: ownership to the final owner, sanctions screening, certificates, local agent and ICV certificate, capped by the officer&#39;s signed approval">'
+            '<div class="cv-split"><div class="cv-copy by-head"><span class="cv-k">What arrives</span><h2>Five checks, one signed pack.</h2><p class="cv-sub">Each dated. Signed by an officer.</p>'
+            '<p class="cv-fine">Software prepares the file. Only an SBC officer decides.<br>Data held to UAE and Saudi data protection law.</p></div>'
+            '<div class="bp-stage" role="img" aria-label="The introduction pack as a stack: identity, ownership to the final owner, licences and certifications, screening and Gulf readiness, capped by the officer&#39;s signed approval">'
             '<img class="bp-shadow" src="/assets/img/sbc/shadow.svg" alt="">' + layers + '</div></div></section>')
 
 
@@ -313,7 +315,7 @@ def terms(mode, sfx):
             '<div class="cv-bg" aria-hidden="true"><div class="cv-glow" style="--gx:36%%;--gy:60%%"></div><div class="cv-glow" style="--gx:68%%;--gy:60%%;opacity:.7"></div><div class="cv-far"></div><div class="cv-near"></div></div>'
             '<div class="bt-wrap"><div class="cv-head by-head"><span class="cv-k">What it costs you</span><h2>Nothing. And the choice stays yours.</h2></div>'
             '<div class="bt-row">'
-            '<div class="bt-p bt-p1"><div class="bt-in bt-free"><span class="mono bt-tag">Buyer fee</span><span class="bt-aed">AED 0</span><p>To post a need and meet suppliers</p></div><img class="bt-shadow" src="/assets/img/sbc/shadow.svg" alt=""></div>'
+            '<div class="bt-p bt-p1"><div class="bt-in bt-free"><span class="mono bt-tag">Buyer fee</span><span class="bt-aed">AED 0</span><p>To post a need and meet suppliers</p><span class="bt-tbc">Working answer, for SBC to confirm.</span></div><img class="bt-shadow" src="/assets/img/sbc/shadow.svg" alt=""></div>'
             '<div class="bt-p bt-p2"><div class="bt-in bt-you"><span class="bt-co"><img src="%s" alt=""><span><b>Water treatment contractor</b><span>Introduced by SBC</span></span></span>' % cube(mode, 'lit') +
             '<span class="bt-big">You decide who to hire.</span><div class="bt-ch"><div class="bt-btns" role="group" aria-label="Try it"><button type="button" class="bt-b" data-say="Taken forward. You contract with them directly.">Take it forward</button><button type="button" class="bt-b" data-say="Passed. Nothing is owed.">Pass</button></div><span class="bt-say" aria-live="polite"></span></div></div><img class="bt-shadow" src="/assets/img/sbc/shadow.svg" alt=""></div>'
             '</div><span class="bt-fine">An introduction is not a promised contract. Your own procurement rules still apply.</span></div></section>')

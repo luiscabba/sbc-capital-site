@@ -32,7 +32,7 @@ def section(mode):
              guilloche('#1F4FD1', '.13') +
              '<div class="mk-top"><div class="mk-mark"><span class="mk-foil"></span><b>SBC</b></div>'
              '<div class="mk-wm"><b>SBC-Qualified</b><span>SBC Capital · Dubai</span></div><span class="mk-valid">Valid 12 months</span></div>'
-             '<div class="mk-body"><span class="mk-k">It means</span><ul><li>Ownership, sanctions, licences, agent and ICV checked</li>'
+             '<div class="mk-body"><span class="mk-k">It means</span><ul><li>Identity, ownership, licences, screening and Gulf readiness reviewed</li>'
              '<li>Two SBC officers approved</li><li>Re-checked every year</li></ul></div><span class="mk-sheen"></span></div>')
     back = ('<div class="mk-face mk-back">' + grain('mkg-%s-b' % mode, '0 0 0 0 .6  0 0 0 0 .66  0 0 0 0 .85  0 0 0 .22 0', 'screen') +
             guilloche('#FFFFFF', '.07') +
@@ -45,7 +45,7 @@ def section(mode):
     return ('<section class="sec mk" aria-label="The mark"><div class="mk-bg" aria-hidden="true"></div><div class="mk-in">'
             '<div class="mk-head"><span class="mk-kick">SBC-Qualified</span><h2>What the mark means, and what it does not.</h2></div>'
             '<div class="mk-stage"><div class="mk-glow" aria-hidden="true"></div><div class="mk-floor" aria-hidden="true"></div>'
-            '<div class="mk-float"><div class="mk-tilt"><div class="mk-card" role="img" aria-label="The SBC-Qualified card. Front: it means ownership, sanctions, licences, agent and ICV checked, two SBC officers approved, re-checked every year. Back: it does not mean a government licence or accreditation, a promised contract, or an introduction to every opportunity.">'
+            '<div class="mk-float"><div class="mk-tilt"><div class="mk-card" role="img" aria-label="The SBC-Qualified card. Front: it means identity, ownership, licences, screening and Gulf readiness reviewed, two SBC officers approved, re-checked every year. Back: it does not mean a government licence or accreditation, a promised contract, or an introduction to every opportunity.">'
             + front + back + edges + '</div></div></div></div>'
             '<div class="mk-tabs" aria-hidden="true"><span class="mk-tab on">Front · It means</span><span class="mk-tab">Back · It does not mean</span><i class="mk-bar"></i></div>'
             '<button type="button" class="mk-turn" onclick="this.closest(\'.mk\').classList.toggle(\'is-back\')">Turn the card</button>'

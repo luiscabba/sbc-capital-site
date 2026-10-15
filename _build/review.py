@@ -27,11 +27,11 @@ def chrome(mode):
 
 
 CHECKS = [
+    ('Identity', 'The company is real, registered and in good standing.', 'Certificate of incorporation or trade licence', 'Company registries'),
     ('Ownership to the final owner', 'Every holding company, traced until we reach the people who own it.', 'Shareholder register and an ownership chart', 'Company registries in each country in the chain'),
-    ('Sanctions screening', 'The company, its owners and its directors, screened against <span class="rw-ph">[sanctions lists]</span>, then again every month while you hold the mark.', 'Names and dates of birth of owners and directors', 'Screening run and dated in your file'),
-    ('Licences and certificates', 'Your trade licence and sector licences are current and name the same company.', 'Copies of each licence', 'Checked with the issuing body where it can be'),
-    ('Local agent', 'A Gulf agent under contract with you, from SBC&#39;s checked panel.', 'Your signed agent agreement, or ask SBC to refer one', 'The agent&#39;s own licence and contract'),
-    ('ICV certificate', 'An In-Country Value certificate from an authorised certifying body.', 'Your current ICV certificate', 'Certificate number and expiry date'),
+    ('Licences and certifications', 'Your trade licence, sector licences and quality or industry certifications are current and name the same company.', 'Copies of each licence and certification', 'Confirmed with the issuing body where it can be'),
+    ('Screening', 'The company, its owners and its directors, screened against <span class="rw-ph">[sanctions lists]</span>, politically exposed person (PEP) lists and adverse media. Then again every month while you hold the mark. <span class="rw-tbc">Working answer, for SBC to confirm.</span>', 'Names and dates of birth of owners and directors', 'Screening run and dated in your file'),
+    ('Gulf readiness', 'Your local content (ICV, In-Country Value) and local presence, assessed against the target country&#39;s rules. An ICV certificate or a local agent is not a pass condition.', 'Any ICV certificate, local entity or agent agreement you already have', 'The target country&#39;s rules. If you are short, your action plan says what to get and lists local agents SBC has reviewed.'),
 ]
 
 CSS = r'''<style>
@@ -178,23 +178,23 @@ def bg(gx, gy, lines=False):
 
 
 def hero():
-    rows = ''.join('<div class="rw-row"><span>%s</span><span class="rw-st" style="--i:%d"><i></i>Checked</span></div>' % (c[0], i) for i, c in enumerate(CHECKS))
+    rows = ''.join('<div class="rw-row"><span>%s</span><span class="rw-st" style="--i:%d"><i></i>Reviewed</span></div>' % (c[0], i) for i, c in enumerate(CHECKS))
     return ('<section class="sec cv-sec" aria-label="Hero">' + bg('70%', '48%', True) +
             '<div class="cv-hero"><div class="cv-copy"><h1 class="rise">How the review works.</h1>'
             '<p class="rise2">Before any Gulf buyer sees your company, two SBC officers check five things. Here is each one, what you send, and what happens next.</p>'
             '<div class="cv-btns rise3"><a class="btn cv-btn" href="/companies/apply/">Apply</a><a class="cv-ghost" href="#checks">See the five checks</a></div></div>'
-            '<div class="rw-file"><div class="rw-card" role="img" aria-label="An example review file: five checks marked checked, signed by two officers, ending in the SBC-Qualified mark">'
+            '<div class="rw-file"><div class="rw-card" role="img" aria-label="An example review file: five checks marked reviewed, signed by two officers, ending in the SBC-Qualified mark">'
             '<div class="rw-ch">Review file<span>Your company</span></div>' + rows +
             '<div class="rw-sign"><span><i style="--i:0"></i>Officer 1 signed</span><span><i style="--i:1"></i>Officer 2 signed</span></div>'
             '<div class="rw-foot">' + QM + 'SBC-Qualified · valid 12 months</div></div></div></div></section>')
 
 
 def checks(sfx):
-    rows = ''.join('<tr><th scope="row"><span><i aria-hidden="true"></i>%s</span></th><td data-l="SBC confirms">%s</td><td data-l="You send">%s</td><td class="rw-how" data-l="Checked against">%s</td></tr>' % c for c in CHECKS)
+    rows = ''.join('<tr><th scope="row"><span><i aria-hidden="true"></i>%s</span></th><td data-l="SBC confirms">%s</td><td data-l="You send">%s</td><td class="rw-how" data-l="Verified against">%s</td></tr>' % c for c in CHECKS)
     return ('<section class="sec cv-sec" id="checks%s" aria-label="The five checks">' % sfx +
             '<div class="rw-wrap"><div class="rw-head by-head"><h2>Five checks, each on the record.</h2><p>Every check is dated in your file, so a buyer sees exactly what was confirmed and when.</p></div>'
-            '<table class="rw-t"><thead><tr><th scope="col">Check</th><th scope="col">SBC confirms</th><th scope="col">You send</th><th scope="col">Checked against</th></tr></thead><tbody>' + rows + '</tbody></table>'
-            '<span class="rw-note"><b style="font-weight:600;color:var(--cv-ink)">AED 12,500 review fee, once.</b> The checklist arrives within 2 working days of registering. You upload at your own pace.</span></div></section>')
+            '<table class="rw-t"><thead><tr><th scope="col">Check</th><th scope="col">SBC confirms</th><th scope="col">You send</th><th scope="col">Verified against</th></tr></thead><tbody>' + rows + '</tbody></table>'
+            '<span class="rw-note"><b style="font-weight:600;color:var(--cv-ink)">AED 12,500 review fee, once.</b> The checklist arrives within 2 working days of registering. You upload at your own pace. <span class="rw-tbc">Working answer, for SBC to confirm.</span></span></div></section>')
 
 
 def officers():
@@ -204,8 +204,9 @@ def officers():
             '<rect class="h1" x="118" y="22" width="30" height="60" fill="#1F4FD1"></rect><rect class="h2" x="148" y="22" width="30" height="60" fill="#3D6BF0"></rect></svg>')
     return ('<section class="sec cv-sec rw-two-sec" aria-label="Who reviews">' + bg('68%', '50%') +
             '<div class="rw-two"><div class="cv-copy by-head"><h2>Two officers. Both must pass you.</h2>'
-            '<p>Each officer reviews your whole file on their own. If either has a question, it comes back to you, never to a buyer. The review takes about 10 working days once your file is complete.</p>'
-            '<p class="cv-fine">Officers: <span class="rw-ph">[roles and qualifications]</span></p></div>'
+            '<p>Each officer reviews your whole file on their own. If either has a question, it comes back to you, never to a buyer. The review takes about 10 working days once your file is complete. <span class="rw-tbc">Working answer, for SBC to confirm.</span></p>'
+            '<p class="cv-fine">Officers: <span class="rw-ph">[roles and qualifications]</span></p>'
+            '<p class="cv-fine">Software prepares the file. Only an SBC officer decides.<br>Data held to UAE and Saudi data protection law.</p></div>'
             '<div class="rw-pair"><div class="rw-off">' + seal + '<b>Officer 1</b>Reviews all five checks</div><span class="rw-plus" aria-hidden="true">+</span>'
             '<div class="rw-off">' + seal + '<b>Officer 2</b>Reviews them again, separately</div><span class="rw-plus" aria-hidden="true">=</span>' + mark + '</div></div></section>')
 
@@ -214,8 +215,9 @@ def outcomes():
     return ('<section class="sec cv-sec" aria-label="The decision">' +
             '<div class="rw-wrap"><div class="rw-head by-head"><h2>Pass or fall short, you know where you stand.</h2></div>'
             '<div class="rw-fork">'
-            '<div class="rw-out rw-short"><span class="rw-tag">If you fall short</span><h3>Nothing reaches a buyer.</h3><ul>'
-            '<li><i></i><span>You get an action plan listing exactly what to fix.</span></li>'
+            '<div class="rw-out rw-short"><span class="rw-tag">If you fall short</span><h3>You are Conditionally Qualified.</h3><ul>'
+            '<li><i></i><span>You get an action plan listing exactly what to fix. SBC approves it.</span></li>'
+            '<li><i></i><span>Nothing reaches a buyer. You are not introduced until you are SBC-Qualified.</span></li>'
             '<li><i></i><span>Resubmit within <span class="rw-ph">[re-check window]</span>. <span class="rw-ph">[Resubmission fee terms]</span></span></li>'
             '<li><i></i><span>Falling short is not shared with anyone.</span></li></ul></div>'
             '<div class="rw-out rw-pass"><span class="rw-tag">If you pass</span><h3>You are SBC-Qualified for 12 months.</h3><ul>'
@@ -231,8 +233,8 @@ def year():
     return ('<section class="sec cv-sec rw-yr" aria-label="After you pass">' + bg('60%', '60%') +
             '<div class="rw-wrap"><div class="rw-head by-head"><h2>Twelve months, then a re-check.</h2><p>The mark stays valid for a year. Then SBC checks your file again so it never goes stale.</p></div>'
             '<div class="rw-year" role="img" aria-label="Pass after the AED 12,500 review, twelve months of validity, then a yearly AED 4,500 re-check"><div class="rw-fees" aria-hidden="true"><span><b>AED 12,500</b> review, once</span><span><b>AED 4,500</b> re-check, yearly</span></div><div class="rw-months">' + months + '</div><div class="rw-axis" aria-hidden="true">' + axis + '</div></div>'
-            '<div class="rw-facts"><div><b>AED 4,500 a year</b>To stay qualified after the first year.</div>'
-            '<div><b>Sanctions, every month</b><span>Re-screened while you hold the mark. A match withdraws it at once.</span><span class="rw-tbc">Working answer, for SBC to confirm.</span></div>'
+            '<div class="rw-facts"><div><b>AED 4,500 a year</b><span>To stay qualified after the first year.</span><span class="rw-tbc">Working answer, for SBC to confirm.</span></div>'
+            '<div><b>Screening, every month</b><span>Re-screened while you hold the mark. A sanctions match withdraws it at once.</span><span class="rw-tbc">Working answer, for SBC to confirm.</span></div>'
             '<div><b>Can be withdrawn</b><span>Also if <span class="rw-ph">[other withdrawal conditions]</span>.</span></div>'
             '<div><b>Buyers can confirm it</b><span>At <span class="rw-ph">[verification route]</span>.</span></div></div>'
             '<span class="rw-tbc">Underlined items in brackets are still being confirmed by SBC.</span></div></section>')
@@ -241,7 +243,7 @@ def year():
 def end(sfx):
     return ('<section class="sec rw-end" id="start%s" aria-label="Start">' % sfx +
             '<div class="ap-photo" aria-hidden="true"><img class="kb-ap" src="/assets/img/f79104e9e1a1881a050247fd0ea926eb.webp" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div><div class="ap-shade" aria-hidden="true"></div>'
-            '<div class="rw-end-in"><h2>Start with the checklist.</h2><p>Five minutes to register. The checklist arrives within 2 working days.</p>'
+            '<div class="rw-end-in"><h2>Start with the checklist.</h2><p>Five minutes to register. The checklist arrives within 2 working days.</p><span class="rw-tbc" style="color:#A9AFBA">Working answer, for SBC to confirm.</span>'
             '<div class="rw-doors"><a class="a" href="/companies/apply/">Start your application</a><a class="b" href="/buyers/#talk">I&#39;m a buyer: post a need</a></div></div></section>')
 
 
